@@ -1,8 +1,15 @@
 import React, {Component} from 'react';
 import { ScrollView, StyleSheet, View, Button, Text, TouchableHighlight } from 'react-native';
-import { Icon } from 'react-native-elements'
+import { Icon } from 'react-native-elements';
+
+import { init as firebaseInit, putData } from '../components/firebase/Firebase';
 
 export default class HomeScreen extends Component {
+	constructor(props){
+		super(props);
+		firebaseInit();
+	}
+
 	static navigationOptions = {
     header: null,
   };
@@ -12,8 +19,6 @@ export default class HomeScreen extends Component {
 		return (
 			// To-do: Make the top navbar a component
 			<View style={{flex: 1}}>
-
-
 
 				<View style={styles.navbar}>
 					<View style={styles.navbarButton}>
@@ -31,7 +36,6 @@ export default class HomeScreen extends Component {
 							<Icon name='settings' size={40} color='white'/>
 						</TouchableHighlight>
 			    </View>
-
 				</View>
 
 				<View style={{
@@ -44,18 +48,19 @@ export default class HomeScreen extends Component {
 				</View>
 
 
-
-
-				<View style={styles.addButton}>
-					<Text>
-						Add Photo
-					</Text>
-				</View>
+				<TouchableHighlight onPress={() => putData()}>
+					<View style={styles.addButton}>
+						<Text>
+							Add Photo
+						</Text>
+					</View>
+				</TouchableHighlight>
 
 			</View>
 		);
 	}
 }
+
 
 
 const styles = StyleSheet.create({
