@@ -12,26 +12,22 @@ export default class HomeScreen extends Component {
 		return (
 			// To-do: Make the top navbar a component
 			<View style={{flex: 1}}>
-
-
-
 				<View style={styles.navbar}>
 					<View style={styles.navbarButton}>
 						<TouchableHighlight onPress={() => this.props.navigation.push('Profile')}>
 							<Icon name='person' size={40} color='white'/>
 						</TouchableHighlight>
-		      </View>
+		      		</View>
 
-		      <View style={styles.navbarTitle}>
-		      	<Text style={styles.navbarTitleText}>Cherishly</Text>
-		      </View>
+					<View style={styles.navbarTitle}>
+						<Text style={styles.navbarTitleText}>Cherishly</Text>
+					</View>
 
 					<View style={styles.navbarButton}>
 						<TouchableHighlight onPress={() => this.props.navigation.push('Settings')}>
 							<Icon name='settings' size={40} color='white'/>
 						</TouchableHighlight>
-			    </View>
-
+			    	</View>
 				</View>
 
 				<View style={{
@@ -39,12 +35,9 @@ export default class HomeScreen extends Component {
 					backgroundColor: 'white',
 					justifyContent: 'center',
 					alignItems: 'center'
-				}}>
+					}}>
 					<Text>Cherishly is a photo sharing application!</Text>
 				</View>
-
-
-
 
 				<View style={styles.addButton}>
 					<Text>
@@ -52,6 +45,7 @@ export default class HomeScreen extends Component {
 					</Text>
 				</View>
 
+				
 			</View>
 		);
 	}
