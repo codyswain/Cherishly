@@ -38,54 +38,17 @@ export default class HomeScreen extends Component {
 		const {navigate} = this.props.navigation;
 		return (
 			<View style={{flex: 1}}>
-<<<<<<< HEAD
-				<View style={styles.navbar}>
-					<View style={styles.navbarButton}>
-						<TouchableHighlight onPress={() => this.props.navigation.push('Profile')}>
-							<Icon name='person' size={40} color='white'/>
-						</TouchableHighlight>
-		      		</View>
-
-					<View style={styles.navbarTitle}>
-						<Text style={styles.navbarTitleText}>Cherishly</Text>
-					</View>
-
-					<View style={styles.navbarButton}>
-						<TouchableHighlight onPress={() => this.props.navigation.push('Settings')}>
-							<Icon name='settings' size={40} color='white'/>
-						</TouchableHighlight>
-			    	</View>
-				</View>
-
-				<View style={{
-					flex: 9, 
-					backgroundColor: 'white',
-					justifyContent: 'center',
-					alignItems: 'center'
-					}}>
-=======
 				<Navbar navigation={this.props.navigation} />
 
 				<PopupWindow status={this.state.popupWindow} />
 
 				<View style={styles.main}>
 					<ScrollView>
->>>>>>> 692fb97385da21b16f18696b60550e459aecfa6d
 					<Text>Cherishly is a photo sharing application!</Text>
 					</ScrollView>
 				</View>
 
-<<<<<<< HEAD
-				<View style={styles.addButton}>
-					<Text>
-						Add Photo
-					</Text>
-				</View>
-
-				
-=======
 				<AddButton handler={this.handleAddPhotoButton} />
->>>>>>> 692fb97385da21b16f18696b60550e459aecfa6d
 			</View>
 		);
 	}
