@@ -5,21 +5,22 @@ import { View, StyleSheet, Text, TouchableHighlight, Image} from 'react-native';
 export default class PhotoBarGroup extends React.Component {
 
   render(){
-    const photobar = this.props.status;
+    const userInfo = this.props.data;
+    const postInfo = this.props.post;
       return (
       <View style={styles.photoInfoBar}>
         <View style={styles.picViewName}>
           <View style={styles.profPicContainer}> 
-            <Image source={{uri:"https://firebasestorage.googleapis.com/v0/b/cherishly-412dd.appspot.com/o/woman_profile.jpeg?alt=media&token=0fe3639a-d0ad-488d-8c4b-8441e4c9e6ca"}} style={styles.profPic}/>
+            <Image source={{uri:userInfo.pic}} style={styles.profPic}/>
           </View>
 
           <View style={styles.userName}>
-            <Text>Alex Longerbeam</Text>
+            <Text>{userInfo.name}</Text>
           </View>
         </View>
         <View style={styles.picGroups}>
           <View style={styles.groupIcon}>
-            <Text>Adventures</Text>
+            <Text>{postInfo.groups[0]}</Text>
           </View>
         </View>
 

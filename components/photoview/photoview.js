@@ -16,15 +16,17 @@ export default class PhotoView extends React.Component {
 
   // Handle state of commentview
   state = {
-    photobar: true,
     comments: false,
     post: {},
+    user: {},
     doneLoading: false
   };
 
   componentWillMount() {
   	console.log("Component mount")
-  	this.getPost()
+  	this.getPost().then(() => {
+  		this.getUser();
+  	});
   };
 
   //pull data from Firebase
@@ -32,16 +34,22 @@ export default class PhotoView extends React.Component {
   	console.log("getting")
   	await Fire.downloadData('posts', this.props.data).then(p => {
   		console.log(p)
-  		this.setState({post: p, doneLoading: true})
+  		this.setState({post: p})
   	})
   	
   };
+
+  getUser = async () => {
+  	await Fire.downloadData('users', this.state.post.user.user_id).then(u => {
+  		this.setState({user: u, doneLoading:true});
+  	})
+  }
 
   // Event handler for view comments button
   // Pass this handler to child component
   handleViewCommentsButton = (e) => {
     e.preventDefault();
-    this.setState({comments:true, photobar:false});
+    this.setState({comments:true});
     console.log(this.state.comments);
   };
 
@@ -49,22 +57,26 @@ export default class PhotoView extends React.Component {
   // Pass this handler to child component
   handleHideCommentsButton = (e) => {
     e.preventDefault();
-    this.setState({comments:false, photobar:true});
+    this.setState({comments:false});
     console.log(this.state.comments);
   };
 
 	render(){
 
 		if (this.state.doneLoading) {
-			console.log("reander")
+			console.log("render")
 		return (
 				<View style={styles.photoView}>
 					<Image source={{uri:this.state.post.src}} style={styles.picture}/>
 					<TouchableHighlight style={{position:'absolute', right: 5, top: 5}} onPress={this.props.handler}>
 						<Icon name='close' size={40} color='white'/>
 					</TouchableHighlight>
-      				<PhotoBar status={this.state.photobar} handler={this.handleViewCommentsButton} />
-      				<CommentView status={this.state.comments} handler={this.handleHideCommentsButton}/>
+					{this.state.comments ? 
+					<CommentView handler={this.handleHideCommentsButton} post={this.state.post} user={this.state.user}/>
+					:
+      				<PhotoBar handler={this.handleViewCommentsButton} data={this.state.user} post={this.state.post}/>
+      			}
+      				
       			</View>
       			
       		

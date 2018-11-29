@@ -45,8 +45,6 @@ export default class HomeScreen extends Component {
   			photoView: !prevState.photoView,
   			photoViewData: '4GGXSfwvebW39yEj4ZRG'
 		}));
-		// To upload to firebase
-		// Fire.uploadData("sample", "test15", {"egf":"blah"});;
 		console.log(this.state.photoView);
 	}
 

@@ -36,13 +36,11 @@ export default class CommentView extends React.Component {
 
 
 	render(){
-		const comments = this.props.status;
-		if (comments){
 			return (
 				<View style={this.state.commenting
                             ? styles.commentBoxUp
                             : styles.commentBoxDown}>
-					<PhotoBarGroup />
+					<PhotoBarGroup data={this.props.user} post={this.props.post}/>
 					<ListView style={styles.container} dataSource={this.state.data} 
 						renderRow={(data) =>
 							<View style={{width: '100%', height: 60, marginBottom:15, borderBottomColor: 'black', borderBottomWidth: 1}}> 
@@ -61,8 +59,7 @@ export default class CommentView extends React.Component {
  					</TouchableHighlight>
       			</View>
 			);
-		}
-		return null;
+	
 	}
 }
 
