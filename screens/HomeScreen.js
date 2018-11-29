@@ -6,7 +6,7 @@ import Navbar from '../components/navbar';
 import AddButton from '../components/addbutton';
 import PopupWindow from '../components/popupwindow';
 import PicButton from '../components/picbutton';
-import PhotoView from '../components/photoview';
+import PhotoView from '../components/photoview/photoview';
 
 export default class HomeScreen extends Component {
 	constructor(props) {
