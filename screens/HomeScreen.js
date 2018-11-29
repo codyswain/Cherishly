@@ -1,13 +1,11 @@
 import React, {Component} from 'react';
-import { Alert, ScrollView, StyleSheet, View, Button, Text, TouchableHighlight, FlatList, Picker } from 'react-native';
+import { Alert, ScrollView, StyleSheet, View, Button, Text, TouchableHighlight, FlatList, Image } from 'react-native';
 import Fire from '../components/firebase/Firebase';
 import Navbar from '../components/navbar';
 import AddButton from '../components/addbutton';
 import PopupWindow from '../components/popupwindow';
 import Post from '../components/post';
-import ModalDropdown from 'react-native-modal-dropdown';
 import {Dropdown} from 'react-native-material-dropdown';
-import PicButton from '../components/picbutton';
 import PhotoView from '../components/photoview/photoview';
 
 export default class HomeScreen extends Component {
@@ -16,7 +14,8 @@ export default class HomeScreen extends Component {
 		this.handleAddPhotoButton = this.handleAddPhotoButton.bind(this);
 		this.getDropdownVal = this.getDropdownVal.bind(this);
 		this.handleAddPhotoButton = this.handleAddPhotoButton.bind(this)
-		this.handleShowPhotoButton = this.handleShowPhotoButton.bind(this)
+		this.showPhoto = this.showPhoto.bind(this)
+		this.hidePhotoView = this.hidePhotoView.bind(this)
 	}
 
 	// Handle state of popup window here
@@ -26,6 +25,10 @@ export default class HomeScreen extends Component {
 		photoView: false,
 		photoViewData: ''
 	};
+
+	componentWillMount(){
+		this.doStuff('All');
+	}
 
 	// Event handler for add photo button
 	// Pass this handler to child component
@@ -43,15 +46,23 @@ export default class HomeScreen extends Component {
 		this.doStuff(selectedVal);
 	}
 
-	doStuff(val){
+	doStuff = async (val) => {
 		// make call to firebase
-		let tempData = [{key: 'a', group: 'Roommates'}, {key: 'b', group: 'Roommates'}, {key: 'c', group: 'Family'}, {key: 'd', group: 'soccer team 2018'}];
-		var revisedData = [];
-		revisedData = tempData.filter(function (item){return item.group == val});
-		console.log(revisedData[0]);
-		this.setState({posts: revisedData});
-	}
+		//let tempData = [{key: 'a', group: 'Roommates'}, {key: 'b', group: 'Roommates'}, {key: 'c', group: 'Family'}, {key: 'd', group: 'soccer team 2018'}];
+		//let tempData = Fire.downloadPosts();
+		await Fire.downloadPosts().then(p => {
+			//this.setState({posts: p})
+			var revisedData = [];
+			if (val == 'All'){
+				this.setState({posts: p});
+			}
+			else{
+				revisedData = p.filter(function (item){return item.group == val});
+				this.setState({posts: revisedData});
+			}
+		})	
 
+	}
 
 	// Removes extra whitespace introducedß by navigation
 	static navigationOptions = {
@@ -62,14 +73,21 @@ export default class HomeScreen extends Component {
   //When showing a picture, set this.state.photoViewData to the ID of the post to show
   //then call this method
 
-  handleShowPhotoButton = (e) => {
-		e.preventDefault();
+  showPhoto = (photoID) => {
 		this.setState(prevState => ({
-  			photoView: !prevState.photoView,
-  			photoViewData: '4GGXSfwvebW39yEj4ZRG'
+  			photoView: true,
+  			photoViewData: photoID
 		}));
 		console.log(this.state.photoView);
-	}
+	};
+
+	hidePhotoView() {
+		this.setState({
+			photoView: false
+		})
+	};
+
+
 
 	// Removes extra whitespace introducedß by navigation
 	static navigationOptions = {
@@ -81,18 +99,19 @@ export default class HomeScreen extends Component {
 	render() {
 		const {navigate} = this.props.navigation;
 		let myData = [
+			{value: 'All',},
 			{value: 'Roommates',}, 
 			{ value: 'Family', }, 
 			{ value: 'soccer team 2018', }];
 		return (
 			<View style={{flex: 1}}>
 				<Navbar navigation={this.props.navigation} />
-				<Dropdown label='Filter' data={myData} onChangeText={value => this.getDropdownVal(value) }/>				
+				<Dropdown label='Filter' data={myData} value="All" onChangeText={value => this.getDropdownVal(value) }/>				
 				<PopupWindow status={this.state.popupWindow} />
 
 				{this.state.photoView ? 
 
-				<PhotoView status={this.state.photoView} handler={this.handleShowPhotoButton} postID={this.state.photoViewData}/>
+				<PhotoView status={this.state.photoView} handler={this.hidePhotoView} postID={this.state.photoViewData}/>
 				:
 				<View></View>
 				}
@@ -101,12 +120,12 @@ export default class HomeScreen extends Component {
 					<ScrollView>
 					<FlatList
   						data={this.state.posts}
-  						renderItem={ ({item}) => <Post link='https://spaceplace.nasa.gov/review/sunburn/sunburn1.en.png' group={item.group} /> }
+  						renderItem={ ({item}) => <Post link={item.src} group={item.group} handleClick={() => this.showPhoto(item.id)} /> }
+						
 					/>
 					</ScrollView>
 				</View>
 				<AddButton handler={this.handleAddPhotoButton} />
-				<PicButton handler={this.handleShowPhotoButton} />
 			</View>
 		);
 	}

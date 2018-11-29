@@ -48,6 +48,23 @@ class FireBase {
    }
    };
 
+   downloadPosts = async () => {
+     var ref = firebase.firestore().collection('posts');
+
+     try {
+       posts = await ref.get()
+       if (true){
+         return posts.docs.map(doc => doc.data())
+       } else {
+         console.log("no such document");
+         return null;
+       }
+     }
+     catch (e) {
+       console.log(e);
+     }
+   };
+
    downloadComments = async (postID) => {
     console.log(postID)
     var ref = firebase.firestore().collection('posts').doc(postID).collection('comments');

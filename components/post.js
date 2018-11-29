@@ -1,19 +1,17 @@
 import React from 'react';
-import { View, StyleSheet, Image } from 'react-native';
+import { View, StyleSheet, Image, TouchableHighlight } from 'react-native';
 
 export default class Post extends React.Component {
 	render(){
         var imageURL = this.props.link;   
-        /*if (this.state.hidden){
-            return null;
-        }*/
+        let handler = this.props.handleClick;
         return (
-            <View >
+            <TouchableHighlight onPress={handler}>
             <Image 
             style={styles.postImage}
             source={{ uri: imageURL }}
             group={ this.props.group } />
-        </View>
+        </TouchableHighlight>
     );
 	}
 }

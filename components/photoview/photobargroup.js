@@ -20,7 +20,7 @@ export default class PhotoBarGroup extends React.Component {
         </View>
         <View style={styles.picGroups}>
           <View style={styles.groupIcon}>
-            <Text>{postInfo.groups[0]}</Text>
+            <Text>{postInfo.group}</Text>
           </View>
         </View>
 
