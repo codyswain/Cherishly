@@ -21,10 +21,29 @@ class FireBase {
     firestore.settings(settings);
   };
 
-  downloadData = () => {
-    //Download data here
-    console.log("Download data function called")
-  };
+  // downloadData = () => {
+  //   //Download data here
+  //   console.log("Download data function called")
+  // };
+
+  //NEW FIREBASE STUFF
+  downloadData = (collectionId, documentId) => {
+     var ref = firebase.firestore().collection(collectionId).doc(documentId);
+
+     ref.get().then(function(doc) {
+         if (doc.exists) {
+             console.log("Document data:", doc.data());
+             return doc.data();
+         } else {
+             // doc.data() will be undefined in this case
+             console.log("No such document!");
+             return null;
+         }
+     }).catch(function(error) {
+         console.log("Error getting document:", error);
+         return null;
+     });
+   };
 
   uploadData = (collectionId, documentId, data) => {
     firebase.firestore().collection(collectionId).doc(documentId).set({

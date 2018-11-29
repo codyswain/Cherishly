@@ -2,7 +2,7 @@ import React from 'react';
 import { View, StyleSheet, Text, TouchableHighlight, Image} from 'react-native';
 import { Icon } from 'react-native-elements';
 
-//import Fire from '../firebase/Firebase';
+import Fire from '../firebase/Firebase';
 
 import CommentView from './comments';
 import PhotoBar from './photobar';
@@ -22,7 +22,10 @@ export default class PhotoView extends React.Component {
   };
 
   //pull data from Firebase
-
+  getPost = async () => {
+  	let p = await Fire.downloadData('posts', '4GGXSfwvebW39yEj4ZRG');
+  	this.post = p;
+  }
 
   // Event handler for view comments button
   // Pass this handler to child component
@@ -43,6 +46,7 @@ export default class PhotoView extends React.Component {
 	render(){
 		const photo = this.props.status;
 		if (photo){
+			this.getPost()
 			return (
 				<View style={styles.photoView}>
 					<Image source={{uri:"https://firebasestorage.googleapis.com/v0/b/cherishly-412dd.appspot.com/o/lake.jpg?alt=media&token=1bd79c48-6858-4b32-82cd-d64baf36e9f5"}} style={styles.picture}/>
