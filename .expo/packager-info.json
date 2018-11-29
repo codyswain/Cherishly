@@ -1,9 +1,9 @@
 {
   "devToolsPort": 19002,
-  "expoServerPort": null,
-  "packagerPort": null,
-  "packagerPid": null,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null
+  "expoServerPort": 19000,
+  "packagerPort": 19001,
+  "packagerPid": 5107,
+  "expoServerNgrokUrl": "https://vt-a4h.grace-y728.cherishly-react.exp.direct",
+  "packagerNgrokUrl": "https://packager.vt-a4h.grace-y728.cherishly-react.exp.direct",
+  "ngrokPid": 5119
 }

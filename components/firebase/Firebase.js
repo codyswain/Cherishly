@@ -23,7 +23,18 @@ class FireBase {
 
   downloadData = () => {
     //Download data here
-    console.log("Download data function called")
+    /*let ref = firebase.firestore().collection('posts');
+    ref.orderBy('date', 'desc');
+    const querySnapshot = ref.get();
+    const data = [];
+    querySnapshot.forEach(function(doc) {
+      if (doc.exists){
+        const post = doc.data() || {};
+        data.push(post);
+      }
+    })
+    console.log(data);
+    console.log("hello IS MSL KAJWEL;KFJWEL;FJAELW;KFJ L;KJ ");*/
   };
 
   uploadData = (collectionId, documentId, data) => {
