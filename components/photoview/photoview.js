@@ -39,7 +39,7 @@ export default class PhotoView extends React.Component {
   };
 
   getUser = async () => {
-  	await Fire.downloadData('users', this.state.post.user.user_id).then(u => {
+  	await Fire.downloadData('users', this.state.post.user).then(u => {
   		this.setState({user: u, doneLoading:true});
   	})
   }
