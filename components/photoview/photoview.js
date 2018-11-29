@@ -18,14 +18,24 @@ export default class PhotoView extends React.Component {
   state = {
     photobar: true,
     comments: false,
-    post: {}
+    post: {},
+    doneLoading: false
+  };
+
+  componentWillMount() {
+  	console.log("Component mount")
+  	this.getPost()
   };
 
   //pull data from Firebase
   getPost = async () => {
-  	let p = await Fire.downloadData('posts', '4GGXSfwvebW39yEj4ZRG');
-  	this.post = p;
-  }
+  	console.log("getting")
+  	await Fire.downloadData('posts', this.props.data).then(p => {
+  		console.log(p)
+  		this.setState({post: p, doneLoading: true})
+  	})
+  	
+  };
 
   // Event handler for view comments button
   // Pass this handler to child component
@@ -44,22 +54,27 @@ export default class PhotoView extends React.Component {
   };
 
 	render(){
-		const photo = this.props.status;
-		if (photo){
-			this.getPost()
-			return (
+
+		if (this.state.doneLoading) {
+			console.log("reander")
+		return (
 				<View style={styles.photoView}>
-					<Image source={{uri:"https://firebasestorage.googleapis.com/v0/b/cherishly-412dd.appspot.com/o/lake.jpg?alt=media&token=1bd79c48-6858-4b32-82cd-d64baf36e9f5"}} style={styles.picture}/>
+					<Image source={{uri:this.state.post.src}} style={styles.picture}/>
 					<TouchableHighlight style={{position:'absolute', right: 5, top: 5}} onPress={this.props.handler}>
 						<Icon name='close' size={40} color='white'/>
 					</TouchableHighlight>
       				<PhotoBar status={this.state.photobar} handler={this.handleViewCommentsButton} />
       				<CommentView status={this.state.comments} handler={this.handleHideCommentsButton}/>
       			</View>
+      			
+      		
 			);
 		}
-		return null;
-	}
+		else {
+			return null;
+		}
+
+		}
 }
 
 const styles = StyleSheet.create({

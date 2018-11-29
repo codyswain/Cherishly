@@ -19,6 +19,7 @@ export default class HomeScreen extends Component {
 	state = {
 		popupWindow: false,
 		photoView: false,
+		photoViewData: ''
 	};
 
 	// Event handler for add photo button
@@ -41,7 +42,8 @@ export default class HomeScreen extends Component {
   handleShowPhotoButton = (e) => {
 		e.preventDefault();
 		this.setState(prevState => ({
-  			photoView: !prevState.photoView
+  			photoView: !prevState.photoView,
+  			photoViewData: '4GGXSfwvebW39yEj4ZRG'
 		}));
 		// To upload to firebase
 		// Fire.uploadData("sample", "test15", {"egf":"blah"});;
@@ -61,7 +63,12 @@ export default class HomeScreen extends Component {
 
 				<PopupWindow status={this.state.popupWindow} />
 
-				<PhotoView status={this.state.photoView} handler={this.handleShowPhotoButton} />
+				{this.state.photoView ? 
+
+				<PhotoView status={this.state.photoView} handler={this.handleShowPhotoButton} data={this.state.photoViewData}/>
+				:
+				<View></View>
+				}
 
 				<View style={styles.main}>
 					<ScrollView>

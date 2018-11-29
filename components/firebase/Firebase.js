@@ -27,11 +27,12 @@ class FireBase {
   // };
 
   //NEW FIREBASE STUFF
-  downloadData = (collectionId, documentId) => {
+  downloadData = async (collectionId, documentId) => {
      var ref = firebase.firestore().collection(collectionId).doc(documentId);
+     try{
 
-     ref.get().then(function(doc) {
-         if (doc.exists) {
+     doc = await ref.get()
+      if (doc.exists) {
              console.log("Document data:", doc.data());
              return doc.data();
          } else {
@@ -39,10 +40,12 @@ class FireBase {
              console.log("No such document!");
              return null;
          }
-     }).catch(function(error) {
-         console.log("Error getting document:", error);
-         return null;
-     });
+       }
+     
+   
+   catch(e) {
+    console.log(e)
+   }
    };
 
   uploadData = (collectionId, documentId, data) => {
