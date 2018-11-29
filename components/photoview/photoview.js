@@ -32,8 +32,7 @@ export default class PhotoView extends React.Component {
   //pull data from Firebase
   getPost = async () => {
   	console.log("getting")
-  	await Fire.downloadData('posts', this.props.data).then(p => {
-  		console.log(p)
+  	await Fire.downloadData('posts', this.props.postID).then(p => {
   		this.setState({post: p})
   	})
   	
@@ -72,7 +71,7 @@ export default class PhotoView extends React.Component {
 						<Icon name='close' size={40} color='white'/>
 					</TouchableHighlight>
 					{this.state.comments ? 
-					<CommentView handler={this.handleHideCommentsButton} post={this.state.post} user={this.state.user}/>
+					<CommentView handler={this.handleHideCommentsButton} post={this.state.post} user={this.state.user} postID={this.props.postID}/>
 					:
       				<PhotoBar handler={this.handleViewCommentsButton} data={this.state.user} post={this.state.post}/>
       			}

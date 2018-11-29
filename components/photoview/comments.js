@@ -2,15 +2,17 @@ import React from 'react';
 import { View, StyleSheet, Text, TouchableHighlight, Image, ListView, TextInput} from 'react-native';
 import { Icon } from 'react-native-elements';
 
-import PhotoBarGroup from './photobargroup'
+import PhotoBarGroup from './photobargroup';
+import Fire from '../firebase/Firebase';
 
 export default class CommentView extends React.Component {
 
 	constructor(props) {
     super(props);
+
     
 
-  	const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+  	this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 
   	const com1 = {
 			name: "Jane Doe",
@@ -25,40 +27,65 @@ export default class CommentView extends React.Component {
 		};
 
 	this.state = {
-		data: ds.cloneWithRows([com1, com2]),
-		text: "Make a comment",
-		commenting: false 
+		comments: this.ds,
+		commentText: 'Make a comment',
+		commenting: false ,
+		doneLoading: false
 		
 	};
 
 	};
 
+	componentWillMount() {
+    	this.getComments()
+    };
+
+    getComments() {
+    	this.setState({doneLoading: false})
+    	Fire.downloadComments(this.props.postID).then (c => {
+    		this.setState({comments:this.ds.cloneWithRows(c), doneLoading:true});
+    	});
+    };
+
+    makeComment() {
+    	console.log("Making comment");
+    	var text = this.state.commentText;
+    	this.setState({commenting: false, commentText: 'Make a comment'})
+    	Fire.makeComment(this.props.postID, this.state.commentText).then( () => {
+    		this.getComments();
+    	});
+    }
 
 
 	render(){
+		if (this.state.doneLoading) {
 			return (
 				<View style={this.state.commenting
                             ? styles.commentBoxUp
                             : styles.commentBoxDown}>
 					<PhotoBarGroup data={this.props.user} post={this.props.post}/>
-					<ListView style={styles.container} dataSource={this.state.data} 
+					<ListView style={styles.container} dataSource={this.state.comments} 
 						renderRow={(data) =>
 							<View style={{width: '100%', height: 60, marginBottom:15, borderBottomColor: 'black', borderBottomWidth: 1}}> 
 								<Text style={{position: 'absolute', left:0, top:0}}>{data.name}</Text>
-								<Text style={{position: 'absolute', left:10, bottom:0, width: '70%'}}>{data.comment}</Text>
-								<Text style={{position: 'absolute', right:5, bottom:0}}>{data.date}</Text>
+								<Text style={{position: 'absolute', left:10, bottom:0, width: '70%'}}>{data.text}</Text>
+								<Text style={{position: 'absolute', right:5, bottom:0}}>{'Yesterday'}</Text>
 							</View>
 						}
 					/>
 
-					<TextInput style={styles.input} value={this.state.text} onChangeText={(text) => this.setState({text})}
-					onFocus={() => this.setState({commenting:true, text:''})}/>
+					<TextInput style={styles.input} value={this.state.commentText} onChangeText={(text) => this.setState({commentText: text})}
+					onSubmitEditing={() => this.makeComment()} onFocus={() => this.setState({commenting:true, commentText:''})}/>
 
 					<TouchableHighlight style={{position:'absolute', right: 5, top: 5}} onPress={this.props.handler}>
  						<Icon name='close' size={20} color='white'/>
  					</TouchableHighlight>
       			</View>
 			);
+		}
+		else {
+			return null;
+		}
 	
 	}
 }

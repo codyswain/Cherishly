@@ -39,6 +39,10 @@ export default class HomeScreen extends Component {
     	header: null,
   };
 
+  //**********************************************
+  //When showing a picture, set this.state.photoViewData to the ID of the post to show
+  //then call this method
+
   handleShowPhotoButton = (e) => {
 		e.preventDefault();
 		this.setState(prevState => ({
@@ -53,6 +57,8 @@ export default class HomeScreen extends Component {
     	header: null,
   };
 
+  //Remove the picbutton, this is just used to show and hide the photo view right now
+
 	render() {
 		const {navigate} = this.props.navigation;
 		return (
@@ -63,7 +69,7 @@ export default class HomeScreen extends Component {
 
 				{this.state.photoView ? 
 
-				<PhotoView status={this.state.photoView} handler={this.handleShowPhotoButton} data={this.state.photoViewData}/>
+				<PhotoView status={this.state.photoView} handler={this.handleShowPhotoButton} postID={this.state.photoViewData}/>
 				:
 				<View></View>
 				}
@@ -73,7 +79,6 @@ export default class HomeScreen extends Component {
 					<Text>Cherishly is a photo sharing application!</Text>
 					</ScrollView>
 				</View>
-
 				<AddButton handler={this.handleAddPhotoButton} />
 				<PicButton handler={this.handleShowPhotoButton} />
 			</View>

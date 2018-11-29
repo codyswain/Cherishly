@@ -33,7 +33,7 @@ class FireBase {
 
      doc = await ref.get()
       if (doc.exists) {
-             console.log("Document data:", doc.data());
+             //console.log("Document data:", doc.data());
              return doc.data();
          } else {
              // doc.data() will be undefined in this case
@@ -47,6 +47,40 @@ class FireBase {
     console.log(e)
    }
    };
+
+   downloadComments = async (postID) => {
+    console.log(postID)
+    var ref = firebase.firestore().collection('posts').doc(postID).collection('comments');
+
+    try {
+      comments = await ref.get()
+      if (true) {
+        return comments.docs.map(doc => doc.data())
+      } else {
+        console.log("No such document!");
+             return null;
+      }
+    }
+    catch(e) {
+      console.log(e);
+    }
+   };
+
+   makeComment = async (postID, text) => {
+    var ref = firebase.firestore().collection('posts').doc(postID).collection('comments');
+
+    await ref.add({
+      name: "Alex Longerbeam",
+      text: text,
+      time: 'Today'
+    }).then(function(docRef) {
+      console.log("Comment Made");
+    })
+    .catch(function(error) {
+      console.error("Error adding document: ", error);
+    });
+    
+   }
 
   uploadData = (collectionId, documentId, data) => {
     firebase.firestore().collection(collectionId).doc(documentId).set({
