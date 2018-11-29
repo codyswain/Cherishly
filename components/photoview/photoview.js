@@ -50,7 +50,7 @@ export default class PhotoView extends React.Component {
 						<Icon name='close' size={40} color='white'/>
 					</TouchableHighlight>
       				<PhotoBar status={this.state.photobar} handler={this.handleViewCommentsButton} />
-      				<CommentView status={this.state.comments} />
+      				<CommentView status={this.state.comments} handler={this.handleHideCommentsButton}/>
       			</View>
 			);
 		}

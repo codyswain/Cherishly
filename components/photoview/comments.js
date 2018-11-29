@@ -56,7 +56,9 @@ export default class CommentView extends React.Component {
 					<TextInput style={styles.input} value={this.state.text} onChangeText={(text) => this.setState({text})}
 					onFocus={() => this.setState({commenting:true, text:''})}/>
 
-					
+					<TouchableHighlight style={{position:'absolute', right: 5, top: 5}} onPress={this.props.handler}>
+ 						<Icon name='close' size={20} color='white'/>
+ 					</TouchableHighlight>
       			</View>
 			);
 		}
