@@ -7,18 +7,24 @@ import PopupWindow from '../components/popupwindow';
 import Post from '../components/post';
 import ModalDropdown from 'react-native-modal-dropdown';
 import {Dropdown} from 'react-native-material-dropdown';
+import PicButton from '../components/picbutton';
+import PhotoView from '../components/photoview/photoview';
 
 export default class HomeScreen extends Component {
 	constructor(props) {
 		super(props);
 		this.handleAddPhotoButton = this.handleAddPhotoButton.bind(this);
 		this.getDropdownVal = this.getDropdownVal.bind(this);
+		this.handleAddPhotoButton = this.handleAddPhotoButton.bind(this)
+		this.handleShowPhotoButton = this.handleShowPhotoButton.bind(this)
 	}
 
 	// Handle state of popup window here
 	state = {
 		popupWindow: false,
 		posts: [],
+		photoView: false,
+		photoViewData: ''
 	};
 
 	// Event handler for add photo button
@@ -52,6 +58,26 @@ export default class HomeScreen extends Component {
     	header: null,
   	};
 
+  //**********************************************
+  //When showing a picture, set this.state.photoViewData to the ID of the post to show
+  //then call this method
+
+  handleShowPhotoButton = (e) => {
+		e.preventDefault();
+		this.setState(prevState => ({
+  			photoView: !prevState.photoView,
+  			photoViewData: '4GGXSfwvebW39yEj4ZRG'
+		}));
+		console.log(this.state.photoView);
+	}
+
+	// Removes extra whitespace introducedß by navigation
+	static navigationOptions = {
+    	header: null,
+  };
+
+  //Remove the picbutton, this is just used to show and hide the photo view right now
+
 	render() {
 		const {navigate} = this.props.navigation;
 		let myData = [
@@ -64,7 +90,14 @@ export default class HomeScreen extends Component {
 				<Dropdown label='Filter' data={myData} onChangeText={value => this.getDropdownVal(value) }/>				
 				<PopupWindow status={this.state.popupWindow} />
 
-				<View style={styles.main}>				
+				{this.state.photoView ? 
+
+				<PhotoView status={this.state.photoView} handler={this.handleShowPhotoButton} postID={this.state.photoViewData}/>
+				:
+				<View></View>
+				}
+
+				<View style={styles.main}>
 					<ScrollView>
 					<FlatList
   						data={this.state.posts}
@@ -72,8 +105,8 @@ export default class HomeScreen extends Component {
 					/>
 					</ScrollView>
 				</View>
-
 				<AddButton handler={this.handleAddPhotoButton} />
+				<PicButton handler={this.handleShowPhotoButton} />
 			</View>
 		);
 	}
@@ -100,26 +133,17 @@ const styles = StyleSheet.create({
 		backgroundColor: '#F35F64',
 	},
 
-	dropdown: {
-		flex: 1,
-		textAlign: 'center',
-		color: '#ffffff',
-		fontSize: 50,
-	},
+	picButton: {
+		position: 'absolute',
+		bottom: 30,
+		left: 30,
+		width: 80,
+		height: 80,
+		zIndex: 1,
 
-	dText: {
+		justifyContent: 'center',
+		alignItems: 'center',
+		borderRadius: 50, 
 		backgroundColor: '#F35F64',
-		color: '#ffffff',
-		fontSize: 15,
-		textAlign: 'center',
-		padding: 5,
 	},
-
-	dropdownText: {
-		width: 400,
-		fontFamily: 'System',
-		color: '#000000',
-		fontSize: 12,
-		textAlign: 'center',
-	}
 })

@@ -1,2 +1,4 @@
 .expo/
 node_modules/
+/.expo/settings.json
+components/.expo/
