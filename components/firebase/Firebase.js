@@ -21,12 +21,6 @@ class FireBase {
     firestore.settings(settings);
   };
 
-  // downloadData = () => {
-  //   //Download data here
-  //   console.log("Download data function called")
-  // };
-
-  //NEW FIREBASE STUFF
   downloadData = async (collectionId, documentId) => {
      var ref = firebase.firestore().collection(collectionId).doc(documentId);
      try{
@@ -67,7 +61,7 @@ class FireBase {
 
    downloadComments = async (postID) => {
     console.log(postID)
-    var ref = firebase.firestore().collection('posts').doc(postID).collection('comments');
+    var ref = firebase.firestore().collection('posts').doc(postID).collection('comments').orderBy('msec')
 
     try {
       comments = await ref.get()
@@ -85,19 +79,23 @@ class FireBase {
 
    makeComment = async (postID, text) => {
     var ref = firebase.firestore().collection('posts').doc(postID).collection('comments');
+    var now = new Date();
+    var month = now.getMonth() + 1
+    var day = now.getDate()
+    var dateString = '' + month.toString() + '/' + day.toString()
 
     await ref.add({
-      name: "Alex Longerbeam",
+      name: "Jane Allen",
       text: text,
-      time: 'Today'
+      date: dateString,
+      msec: now.getTime()
     }).then(function(docRef) {
-      console.log("Comment Made");
     })
     .catch(function(error) {
       console.error("Error adding document: ", error);
     });
     
-   }
+   };
 
   uploadData = (collectionId, documentId, data) => {
     firebase.firestore().collection(collectionId).doc(documentId).set({
