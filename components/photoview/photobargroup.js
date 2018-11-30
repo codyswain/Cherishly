@@ -7,6 +7,11 @@ export default class PhotoBarGroup extends React.Component {
   render(){
     const userInfo = this.props.data;
     const postInfo = this.props.post;
+    const date = new Date(postInfo.date)
+    var month = date.getMonth() + 1
+    var day = date.getDate()
+    var year = date.getFullYear()
+    var dateString = '' + month.toString() + '/' + day.toString() + '/' + year.toString()
       return (
       <View style={styles.photoInfoBar}>
         <View style={styles.picViewName}>
@@ -15,17 +20,17 @@ export default class PhotoBarGroup extends React.Component {
           </View>
 
           <View style={styles.userName}>
-            <Text>{userInfo.name}</Text>
+            <Text style={{fontFamily: 'Gill Sans'}}>{userInfo.name}</Text>
           </View>
         </View>
         <View style={styles.picGroups}>
           <View style={styles.groupIcon}>
-            <Text>{postInfo.group}</Text>
+            <Text style={{fontFamily: 'Gill Sans', color: 'white'}}>{postInfo.group}</Text>
           </View>
         </View>
 
         <View style={styles.picViewDate}>
-          <Text>Yesterday</Text>
+          <Text style={{fontFamily: 'Gill Sans'}}>{dateString}</Text>
         </View>
       </View>
     
@@ -37,12 +42,12 @@ export default class PhotoBarGroup extends React.Component {
 const styles = StyleSheet.create({
 
   photoInfoBar : {
-    backgroundColor: '#96beff',
+    backgroundColor: 'rgba(240, 240, 240, 0.75)',
     width: '100%',
     height: '20%',
     position: 'absolute',
     top: 0,
-    borderTopColor: 'black',
+    borderTopColor: '#eeeeee',
     borderTopWidth: 1,
     textAlign: 'center',
     fontSize: 32,
@@ -55,9 +60,9 @@ const styles = StyleSheet.create({
     position: 'absolute',
     left: 0,
     //bottom: '50%',
-    borderRightColor: 'black',
-    borderRightWidth: 1,
-    borderBottomLeftRadius: 20,
+    //borderRightColor: '#eeeeee',
+    //borderRightWidth: 0,
+    borderBottomLeftRadius: 10,
     justifyContent: 'center',
     alignItems: 'center'
     
@@ -69,7 +74,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     right: 5,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
 
   profPicContainer : {
@@ -83,10 +88,10 @@ const styles = StyleSheet.create({
 
   profPic : {
     width:'100%',
-      height:'100%',
-      //objectFit: 'cover',
-      overflow: 'hidden',
-      resizeMode: 'cover',
+    height:'100%',
+    //objectFit: 'cover',
+    overflow: 'hidden',
+    resizeMode: 'cover',
     borderRadius:20
   },
 
@@ -96,8 +101,8 @@ const styles = StyleSheet.create({
     position: 'absolute',
     left: '40%',
     bottom: 0,
-    borderRightColor: 'black',
-    borderRightWidth: 1,
+    //borderRightColor: '#eeeeee',
+    //borderRightWidth: 1,
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
@@ -105,16 +110,17 @@ const styles = StyleSheet.create({
   },
 
   groupIcon : {
+    /*backgroundColor: 'rgba(220, 220, 220, 0)',*/
     backgroundColor: '#F35F64',
     width: '90%',
-    height: '90%',
+    height: '50%',
     textAlign: 'center',
-    // fontSize: 12,
+     fontSize: 12,
     // paddingTop: 14,
-    // paddingBottom: 14,
+     //paddingBottom: 14,
     // paddingRight: 40,
     // paddingLeft: 40,
-    borderRadius: 25,
+    borderRadius: 20,
     color: 'white',
     justifyContent: 'center',
     alignItems: 'center'
@@ -126,7 +132,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     right:0,
     bottom: 0,
-    borderBottomRightRadius: 20,
+    borderBottomRightRadius: 10,
     justifyContent: 'center',
     alignItems: 'center'
   }

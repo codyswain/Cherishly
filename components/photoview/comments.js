@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, Text, TouchableHighlight, Image, ListView, TextInput} from 'react-native';
+import { View, StyleSheet, Text, TouchableHighlight, Image, ListView, TextInput, Keyboard} from 'react-native';
 import { Icon } from 'react-native-elements';
 
 import PhotoBarGroup from './photobargroup';
@@ -10,25 +10,11 @@ export default class CommentView extends React.Component {
 	constructor(props) {
     super(props);
 
-    
-
   	this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-
-  	const com1 = {
-			name: "Jane Doe",
-			comment: "This day was so much fun I had such a great time!!",
-			date: "Yesterday"
-		};
-
-	const com2 = {
-			name: "Alex Longerbeam3",
-			comment: "Something 3 something",
-			date: "Today"
-		};
 
 	this.state = {
 		comments: this.ds,
-		commentText: 'Make a comment',
+		commentText: 'Make a comment...',
 		commenting: false ,
 		doneLoading: false
 		
@@ -37,21 +23,25 @@ export default class CommentView extends React.Component {
 	};
 
 	componentWillMount() {
-    	this.getComments()
+		this.setState({doneLoading: false});
+    	this.getComments();
     };
 
     getComments() {
-    	this.setState({doneLoading: false})
     	Fire.downloadComments(this.props.postID).then (c => {
     		this.setState({comments:this.ds.cloneWithRows(c), doneLoading:true});
     	});
     };
 
+    submitButton() {
+    	Keyboard.dismiss();
+    	this.makeComment();
+    }
+
     makeComment() {
-    	console.log("Making comment");
     	var text = this.state.commentText;
     	this.setState({commenting: false, commentText: 'Make a comment'})
-    	Fire.makeComment(this.props.postID, this.state.commentText).then( () => {
+    	Fire.makeComment(this.props.postID, text).then( () => {
     		this.getComments();
     	});
     }
@@ -66,10 +56,10 @@ export default class CommentView extends React.Component {
 					<PhotoBarGroup data={this.props.user} post={this.props.post}/>
 					<ListView style={styles.container} dataSource={this.state.comments} 
 						renderRow={(data) =>
-							<View style={{width: '100%', height: 60, marginBottom:15, borderBottomColor: 'black', borderBottomWidth: 1}}> 
-								<Text style={{position: 'absolute', left:0, top:0}}>{data.name}</Text>
-								<Text style={{position: 'absolute', left:10, bottom:0, width: '70%'}}>{data.text}</Text>
-								<Text style={{position: 'absolute', right:5, bottom:0}}>{'Yesterday'}</Text>
+							<View style={{width: '100%', height: 60, marginBottom:15,  backgroundColor:'white', borderRadius: 10}}> 
+								<Text style={{position: 'absolute', left:5, top:5, fontFamily: 'Gill Sans'}}>{data.name}</Text>
+								<Text style={{position: 'absolute', left:10, bottom:5, width: '70%', fontFamily: 'Gill Sans'}}>{data.text}</Text>
+								<Text style={{position: 'absolute', right:5, bottom:5, fontFamily: 'Gill Sans'}}>{data.date}</Text>
 							</View>
 						}
 					/>
@@ -80,6 +70,11 @@ export default class CommentView extends React.Component {
 					<TouchableHighlight style={{position:'absolute', right: 5, top: 5}} onPress={this.props.handler}>
  						<Icon name='close' size={20} color='white'/>
  					</TouchableHighlight>
+ 					<View style={styles.submitButton}>
+ 						<TouchableHighlight  onPress={() => this.submitButton()}>
+ 							<Text style={{fontFamily: 'Gill Sans'}}>Submit</Text>
+ 						</TouchableHighlight>
+ 					</View>
       			</View>
 			);
 		}
@@ -92,23 +87,23 @@ export default class CommentView extends React.Component {
 
 const styles = StyleSheet.create({
 	commentBoxDown : {
-		backgroundColor: 'rgba(150,190,255, 0.9)',
+		backgroundColor: 'rgba(200, 200,200, 0.75)',
 		width: '100%',
 		height: '50%',
 		position: 'absolute',
 		bottom: 0,
-		borderBottomLeftRadius: 20,
-		borderBottomRightRadius: 20,
+		borderBottomLeftRadius: 10,
+		borderBottomRightRadius: 10,
 	},
 
 	commentBoxUp : {
-		backgroundColor: 'rgba(150,190,255, 0.9)',
+		backgroundColor: 'rgba(200, 200,200, 0.75)',
 		width: '100%',
 		height: '50%',
 		position: 'absolute',
-		bottom: 200,
-		borderBottomLeftRadius: 20,
-		borderBottomRightRadius: 20,
+		bottom: '35%',
+		borderBottomLeftRadius: 10,
+		borderBottomRightRadius: 10,
 	},
 
 	container: {
@@ -117,14 +112,32 @@ const styles = StyleSheet.create({
     	top: 60,
     	width: '100%',
     	height: '60%',
+    	borderBottomColor: '#111111',
+		borderBottomWidth: 1,
+		zIndex: 5,
   	},
 
   	input: {
   		position: 'absolute',
   		bottom: 5,
-  		left: 5,
-  		width: '80%',
+  		left: 15,
+  		width: '70%',
   		height: 30,
-  		backgroundColor: 'white'
+  		backgroundColor: 'white',
+  		borderRadius: 10,
+		fontFamily: 'Gill Sans',
+		paddingLeft: 5
+  	},
+
+  	submitButton : {
+  		backgroundColor: 'white',
+  		position:'absolute', 
+  		right: 10, 
+  		bottom: 5,
+  		width: '20%',
+		height: 30,
+		justifyContent: 'center',
+		alignItems: 'center',
+    	borderRadius: 10,
   	}
 })
