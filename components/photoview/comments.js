@@ -134,8 +134,9 @@ const styles = StyleSheet.create({
   		bottom: 5,
   		//padding: 30,
   		width: '20%',
-  		height: 30,
+		height: 30,
+		justifyContent: 'center',
+		alignItems: 'center',
     	borderRadius: 10,
-		backgroundColor: 'white',
   	}
 })
