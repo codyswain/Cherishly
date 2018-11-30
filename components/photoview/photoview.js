@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
 		top: 100,
 		bottom: 40,
 		position: 'absolute',
-		borderRadius: 5,
+		borderRadius: 10,
 		zIndex: 1,
 		backgroundColor: 'white',
 		borderColor: '#eeeeee',
@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
     	left: 0,
 		right: 0,
 		top: 0,
-		borderRadius: 5,
+		borderRadius: 10,
 	},
 
 	photoInfoBar : {
@@ -116,8 +116,8 @@ const styles = StyleSheet.create({
 		height: '15%',
 		position: 'absolute',
 		bottom: 0,
-		borderBottomLeftRadius: 5,
-		borderBottomRightRadius: 5,
+		borderBottomLeftRadius: 10,
+		borderBottomRightRadius: 10,
 		borderTopColor: '#eeeeee',
 		borderTopWidth: 1,
 		textAlign: 'center',

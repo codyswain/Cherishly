@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
     //bottom: '50%',
     //borderRightColor: '#eeeeee',
     //borderRightWidth: 0,
-    borderBottomLeftRadius: 5,
+    borderBottomLeftRadius: 10,
     justifyContent: 'center',
     alignItems: 'center'
     
@@ -110,17 +110,18 @@ const styles = StyleSheet.create({
   },
 
   groupIcon : {
-    backgroundColor: 'rgba(220, 220, 220, 0)',
+    /*backgroundColor: 'rgba(220, 220, 220, 0)',*/
+    backgroundColor: '#F35F64',
     width: '90%',
-    height: '90%',
+    height: '50%',
     textAlign: 'center',
-    // fontSize: 12,
+     fontSize: 12,
     // paddingTop: 14,
-    // paddingBottom: 14,
+     //paddingBottom: 14,
     // paddingRight: 40,
     // paddingLeft: 40,
-    borderRadius: 5,
-    color: 'white',
+    borderRadius: 20,
+    color: '#ffffff',
     justifyContent: 'center',
     alignItems: 'center'
   },
@@ -131,7 +132,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     right:0,
     bottom: 0,
-    borderBottomRightRadius: 5,
+    borderBottomRightRadius: 10,
     justifyContent: 'center',
     alignItems: 'center'
   }

@@ -14,7 +14,7 @@ export default class CommentView extends React.Component {
 
 	this.state = {
 		comments: this.ds,
-		commentText: 'Write a comment...',
+		commentText: 'Make a comment...',
 		commenting: false ,
 		doneLoading: false
 		
@@ -56,7 +56,7 @@ export default class CommentView extends React.Component {
 					<PhotoBarGroup data={this.props.user} post={this.props.post}/>
 					<ListView style={styles.container} dataSource={this.state.comments} 
 						renderRow={(data) =>
-							<View style={{width: '100%', height: 60, marginBottom:15,  backgroundColor:'white', borderRadius: 2}}> 
+							<View style={{width: '100%', height: 60, marginBottom:15,  backgroundColor:'white', borderRadius: 10}}> 
 								<Text style={{position: 'absolute', left:5, top:5, fontFamily: 'Gill Sans'}}>{data.name}</Text>
 								<Text style={{position: 'absolute', left:10, bottom:5, width: '70%', fontFamily: 'Gill Sans'}}>{data.text}</Text>
 								<Text style={{position: 'absolute', right:5, bottom:5, fontFamily: 'Gill Sans'}}>{data.date}</Text>
@@ -92,8 +92,8 @@ const styles = StyleSheet.create({
 		height: '50%',
 		position: 'absolute',
 		bottom: 0,
-		borderBottomLeftRadius: 2,
-		borderBottomRightRadius: 2,
+		borderBottomLeftRadius: 10,
+		borderBottomRightRadius: 10,
 	},
 
 	commentBoxUp : {
@@ -102,8 +102,8 @@ const styles = StyleSheet.create({
 		height: '50%',
 		position: 'absolute',
 		bottom: '35%',
-		borderBottomLeftRadius: 2,
-		borderBottomRightRadius: 2,
+		borderBottomLeftRadius: 10,
+		borderBottomRightRadius: 10,
 	},
 
 	container: {
@@ -112,8 +112,8 @@ const styles = StyleSheet.create({
     	top: 60,
     	width: '100%',
     	height: '60%',
-    	//borderBottomColor: '#eeeeee',
-    	//borderBottomWidth: 1
+    	borderBottomColor: '#aaaaaa',
+    	borderBottomWidth: 1
   	},
 
   	input: {
@@ -121,9 +121,9 @@ const styles = StyleSheet.create({
   		bottom: 10,
   		left: 15,
   		width: '70%',
-  		height: 40,
+  		height: 35,
   		backgroundColor: 'white',
-  		borderRadius: 2,
+  		borderRadius: 10,
 		fontFamily: 'Gill Sans',
 		paddingLeft: 5
   	},
@@ -134,9 +134,9 @@ const styles = StyleSheet.create({
   		right: 10, 
   		bottom: 10,
   		width: '20%',
-		height: 40,
+		height: 35,
 		justifyContent: 'center',
 		alignItems: 'center',
-    	borderRadius: 2,
+    	borderRadius: 10,
   	}
 })

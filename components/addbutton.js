@@ -8,7 +8,7 @@ export default class AddButton extends React.Component {
 			<TouchableHighlight underlayColor="transparent" onPress={this.props.handler}>
 				<View style={styles.addButton}>
 					<Text style={styles.addButtonText}>
-						+ New
+						New Photo
 					</Text>
 				</View>
 			</TouchableHighlight>
@@ -33,7 +33,8 @@ addButton: {
 
 addButtonText: {
 	color: '#ffffff',
-	fontSize: 20,
+	fontSize: 15,
 	fontFamily: 'Gill Sans',
+	textAlign: 'center',
 }
 })
