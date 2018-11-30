@@ -87,7 +87,7 @@ export default class CommentView extends React.Component {
 
 const styles = StyleSheet.create({
 	commentBoxDown : {
-		backgroundColor: 'rgba(200,200,200, 0.5)',
+		backgroundColor: 'rgba(200, 200,200, 0.75)',
 		width: '100%',
 		height: '50%',
 		position: 'absolute',
@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
 	},
 
 	commentBoxUp : {
-		backgroundColor: 'rgba(200, 200,200, 0.5)',
+		backgroundColor: 'rgba(200, 200,200, 0.75)',
 		width: '100%',
 		height: '50%',
 		position: 'absolute',
@@ -112,16 +112,17 @@ const styles = StyleSheet.create({
     	top: 60,
     	width: '100%',
     	height: '60%',
-    	borderBottomColor: '#aaaaaa',
-    	borderBottomWidth: 1
+    	borderBottomColor: '#111111',
+		borderBottomWidth: 1,
+		zIndex: 5,
   	},
 
   	input: {
   		position: 'absolute',
-  		bottom: 10,
+  		bottom: 5,
   		left: 15,
   		width: '70%',
-  		height: 35,
+  		height: 30,
   		backgroundColor: 'white',
   		borderRadius: 10,
 		fontFamily: 'Gill Sans',
@@ -132,9 +133,9 @@ const styles = StyleSheet.create({
   		backgroundColor: 'white',
   		position:'absolute', 
   		right: 10, 
-  		bottom: 10,
+  		bottom: 5,
   		width: '20%',
-		height: 35,
+		height: 30,
 		justifyContent: 'center',
 		alignItems: 'center',
     	borderRadius: 10,

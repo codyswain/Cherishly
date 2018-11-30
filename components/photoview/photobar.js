@@ -44,7 +44,7 @@ export default class PhotoBar extends React.Component {
 const styles = StyleSheet.create({
 
   photoInfoBar : {
-    backgroundColor: 'rgba(240, 240, 240, 0.75)',
+    backgroundColor: 'rgba(240, 240, 240, 0.9)',
     width: '100%',
     height: '15%',
     position: 'absolute',
