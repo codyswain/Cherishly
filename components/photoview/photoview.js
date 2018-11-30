@@ -127,7 +127,6 @@ const styles = StyleSheet.create({
 		borderTopWidth: 1,
 		textAlign: 'center',
 		fontSize: 32,
-    	//fontFamily: "Oxygen", "Karla", "Lato", "Raleway"
 	},
 
 })

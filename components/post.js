@@ -1,12 +1,13 @@
 import React from 'react';
-import { View, StyleSheet, Image, TouchableHighlight } from 'react-native';
+import { View, StyleSheet, Image, TouchableHighlight, LayoutAnimation } from 'react-native';
 
 export default class Post extends React.Component {
 	render(){
         var imageURL = this.props.link;   
         let handler = this.props.handleClick;
+        //LayoutAnimation.easeInEaseOut();
         return (
-            <TouchableHighlight onPress={handler}>
+            <TouchableHighlight activeOpacity={0.7} underlayColor="#ffffff" onPress={handler}>
             <Image 
             style={styles.postImage}
             source={{ uri: imageURL }}

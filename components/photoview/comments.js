@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
     	position: 'absolute',
     	top: 60,
     	width: '100%',
-    	height: '60%',
+		height: '60%',
   	},
 
   	input: {
@@ -125,6 +125,6 @@ const styles = StyleSheet.create({
   		left: 5,
   		width: '80%',
   		height: 30,
-  		backgroundColor: 'white'
+		backgroundColor: 'white',
   	}
 })
