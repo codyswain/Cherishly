@@ -23,7 +23,6 @@ export default class PhotoView extends React.Component {
   };
 
   componentWillMount() {
-  	console.log("Component mount")
   	this.getPost().then(() => {
   		this.getUser();
   	});
@@ -31,7 +30,6 @@ export default class PhotoView extends React.Component {
 
   //pull data from Firebase
   getPost = async () => {
-  	console.log("getting")
   	await Fire.downloadData('posts', this.props.postID).then(p => {
   		this.setState({post: p})
   	})
@@ -49,7 +47,6 @@ export default class PhotoView extends React.Component {
   handleViewCommentsButton = (e) => {
     e.preventDefault();
     this.setState({comments:true});
-    console.log(this.state.comments);
   };
 
   // Event handler for hide comments button
@@ -57,13 +54,11 @@ export default class PhotoView extends React.Component {
   handleHideCommentsButton = (e) => {
     e.preventDefault();
     this.setState({comments:false});
-    console.log(this.state.comments);
   };
 
 	render(){
 
 		if (this.state.doneLoading) {
-			console.log("render")
 		return (
 				<View style={styles.photoView}>
 					<Image source={{uri:this.state.post.src}} style={styles.picture}/>

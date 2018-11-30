@@ -54,6 +54,7 @@ export default class HomeScreen extends Component {
 			//this.setState({posts: p})
 			var revisedData = [];
 			if (val == 'All'){
+				//console.log(p)
 				this.setState({posts: p});
 			}
 			else{
@@ -78,7 +79,6 @@ export default class HomeScreen extends Component {
   			photoView: true,
   			photoViewData: photoID
 		}));
-		console.log(this.state.photoView);
 	};
 
 	hidePhotoView() {

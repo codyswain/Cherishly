@@ -7,6 +7,10 @@ export default class PhotoBar extends React.Component {
   render(){
     const userInfo = this.props.data;
     const postInfo = this.props.post;
+    const date = new Date(postInfo.date)
+    var month = date.getMonth() + 1
+    var day = date.getDate()
+    var dateString = '' + month.toString() + '/' + day.toString()
       return (
       <View style={styles.photoInfoBar}>
         <View style={styles.picViewName}>
@@ -15,18 +19,18 @@ export default class PhotoBar extends React.Component {
           </View>
 
           <View style={styles.userName}>
-            <Text>{userInfo.name}</Text>
+            <Text style={{fontFamily: 'Gill Sans'}}>{userInfo.name}</Text>
           </View>
         </View>
         <View style={styles.picViewComments}>
           <TouchableHighlight onPress={this.props.handler}>
-            <Text>View Comments</Text>
+            <Text style={{fontFamily: 'Gill Sans'}}>View Comments</Text>
           </TouchableHighlight>
           
         </View>
 
         <View style={styles.picViewDate}>
-          <Text>Yesterday</Text>
+          <Text style={{fontFamily: 'Gill Sans'}}>{dateString}</Text>
         </View>
       </View>
     
