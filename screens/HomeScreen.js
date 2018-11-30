@@ -7,6 +7,7 @@ import PopupWindow from '../components/popupwindow';
 import Post from '../components/post';
 import {Dropdown} from 'react-native-material-dropdown';
 import PhotoView from '../components/photoview/photoview';
+import PhotoUpload from '../components/photoupload/photoupload';
 
 export default class HomeScreen extends Component {
 	constructor(props) {
@@ -20,10 +21,10 @@ export default class HomeScreen extends Component {
 
 	// Handle state of popup window here
 	state = {
-		popupWindow: false,
 		posts: [],
 		photoView: false,
-		photoViewData: ''
+		photoViewData: '',
+		photoUpload: false,
 	};
 
 	componentWillMount(){
@@ -35,11 +36,8 @@ export default class HomeScreen extends Component {
 	handleAddPhotoButton = (e) => {
 		e.preventDefault();
 		this.setState(prevState => ({
-  		popupWindow: !prevState.popupWindow
+  			photoUpload: !prevState.photoUpload
 		}));
-		// To upload to firebase
-		// Fire.uploadData("sample", "test15", {"egf":"blah"});;
-		console.log(this.state.popupWindow);
 	}
 
 	getDropdownVal(selectedVal){	
@@ -108,6 +106,7 @@ export default class HomeScreen extends Component {
 				<Navbar navigation={this.props.navigation} />
 				<Dropdown label='Filter' data={myData} value="All" onChangeText={value => this.getDropdownVal(value) }/>				
 				<PopupWindow status={this.state.popupWindow} />
+				<PhotoUpload status={this.state.photoUpload} handler={this.handleAddPhotoButton}/>
 
 				{this.state.photoView ? 
 
