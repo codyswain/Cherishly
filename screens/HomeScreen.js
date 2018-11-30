@@ -55,6 +55,10 @@ export default class HomeScreen extends Component {
 				//console.log(p)
 				this.setState({posts: p});
 			}
+			else if (val == 'Me'){
+				revisedData = p.filter(function (item){ return item.user == 'sgHSmNf7g6okDGATasV0' });
+				this.setState({posts: revisedData});
+			}
 			else{
 				revisedData = p.filter(function (item){return item.group == val});
 				this.setState({posts: revisedData});
@@ -97,15 +101,28 @@ export default class HomeScreen extends Component {
 	render() {
 		const {navigate} = this.props.navigation;
 		let myData = [
-			{value: 'All',},
-			{value: 'Roommates',}, 
+			{ value: 'All',},
+			{ value: 'Roommates',}, 
 			{ value: 'Family', }, 
-			{ value: 'soccer team 2018', }];
+			{ value: 'Soccer', },
+			{ value: 'Me', }];
 		LayoutAnimation.easeInEaseOut();
 		return (
 			<View style={{flex: 1}}>
 				<Navbar navigation={this.props.navigation} />
-				<View style={{width: 200, alignSelf: 'center' }}><Dropdown label='View' data={myData} value="All" onChangeText={value => this.getDropdownVal(value) } labelFontSize={15} selectedItemColor="#F35F64" containerStyle={styles.dropdownContainer} dropdownMargins={{min: 8, max: 16}} /></View>
+				<View style={{width: 200, alignSelf: 'center' }}>
+					<Dropdown label='View' 
+							  data={myData} 
+							  value="All" 
+							  onChangeText={value => this.getDropdownVal(value) } 
+							  fontSize={18}
+							  labelFontSize={15} 
+							  selectedItemColor="#F35F64" 
+							  shadeOpacity={0.3}
+							  baseColor="#F35F64"
+							  dropdownPosition={0}
+							   />
+				</View>
 				<PopupWindow status={this.state.popupWindow} />
 
 				{this.state.photoView ? 
@@ -153,5 +170,10 @@ const styles = StyleSheet.create({
 	containerStyle: {
 		flex: 1,
 		width: 10,
+		fontFamily: "Gill Sans",
+	},
+
+	dropdown: {
+		fontFamily: "Gill Sans",
 	}
 })

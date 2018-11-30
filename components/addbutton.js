@@ -5,7 +5,7 @@ import { Icon } from 'react-native-elements';
 export default class AddButton extends React.Component {
 	render(){
 		return (
-			<TouchableHighlight onPress={this.props.handler}>
+			<TouchableHighlight underlayColor="transparent" onPress={this.props.handler}>
 				<View style={styles.addButton}>
 					<Text style={styles.addButtonText}>
 						+ New
