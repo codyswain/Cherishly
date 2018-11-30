@@ -25,7 +25,7 @@ export default class PhotoBarGroup extends React.Component {
         </View>
         <View style={styles.picGroups}>
           <View style={styles.groupIcon}>
-            <Text style={{fontFamily: 'Gill Sans'}}>{postInfo.group}</Text>
+            <Text style={{fontFamily: 'Gill Sans', color: 'white'}}>{postInfo.group}</Text>
           </View>
         </View>
 
@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
     // paddingRight: 40,
     // paddingLeft: 40,
     borderRadius: 20,
-    color: '#ffffff',
+    color: 'white',
     justifyContent: 'center',
     alignItems: 'center'
   },
