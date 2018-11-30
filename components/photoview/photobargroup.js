@@ -10,7 +10,8 @@ export default class PhotoBarGroup extends React.Component {
     const date = new Date(postInfo.date)
     var month = date.getMonth() + 1
     var day = date.getDate()
-    var dateString = '' + month.toString() + '/' + day.toString()
+    var year = date.getFullYear()
+    var dateString = '' + month.toString() + '/' + day.toString() + '/' + year.toString()
       return (
       <View style={styles.photoInfoBar}>
         <View style={styles.picViewName}>
@@ -41,7 +42,7 @@ export default class PhotoBarGroup extends React.Component {
 const styles = StyleSheet.create({
 
   photoInfoBar : {
-    backgroundColor: '#96beff',
+    backgroundColor: 'rgba(240, 240, 240, 0.75)',
     width: '100%',
     height: '20%',
     position: 'absolute',
@@ -59,9 +60,9 @@ const styles = StyleSheet.create({
     position: 'absolute',
     left: 0,
     //bottom: '50%',
-    borderRightColor: '#eeeeee',
-    borderRightWidth: 1,
-    borderBottomLeftRadius: 20,
+    //borderRightColor: '#eeeeee',
+    //borderRightWidth: 0,
+    borderBottomLeftRadius: 5,
     justifyContent: 'center',
     alignItems: 'center'
     
@@ -87,10 +88,10 @@ const styles = StyleSheet.create({
 
   profPic : {
     width:'100%',
-      height:'100%',
-      //objectFit: 'cover',
-      overflow: 'hidden',
-      resizeMode: 'cover',
+    height:'100%',
+    //objectFit: 'cover',
+    overflow: 'hidden',
+    resizeMode: 'cover',
     borderRadius:20
   },
 
@@ -100,8 +101,8 @@ const styles = StyleSheet.create({
     position: 'absolute',
     left: '40%',
     bottom: 0,
-    borderRightColor: '#eeeeee',
-    borderRightWidth: 1,
+    //borderRightColor: '#eeeeee',
+    //borderRightWidth: 1,
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
@@ -109,7 +110,7 @@ const styles = StyleSheet.create({
   },
 
   groupIcon : {
-    backgroundColor: '#F35F64',
+    backgroundColor: 'rgba(220, 220, 220, 0)',
     width: '90%',
     height: '90%',
     textAlign: 'center',
@@ -118,7 +119,7 @@ const styles = StyleSheet.create({
     // paddingBottom: 14,
     // paddingRight: 40,
     // paddingLeft: 40,
-    borderRadius: 25,
+    borderRadius: 5,
     color: 'white',
     justifyContent: 'center',
     alignItems: 'center'
@@ -130,7 +131,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     right:0,
     bottom: 0,
-    borderBottomRightRadius: 20,
+    borderBottomRightRadius: 5,
     justifyContent: 'center',
     alignItems: 'center'
   }

@@ -35,7 +35,7 @@ export default class HomeScreen extends Component {
 	handleAddPhotoButton = (e) => {
 		e.preventDefault();
 		this.setState(prevState => ({
-  		popupWindow: !prevState.popupWindow
+		  popupWindow: !prevState.popupWindow,
 		}));
 		// To upload to firebase
 		// Fire.uploadData("sample", "test15", {"egf":"blah"});;
@@ -49,10 +49,8 @@ export default class HomeScreen extends Component {
 	doStuff = async (val) => {
 		// make call to firebase
 		await Fire.downloadPosts().then(p => {
-			//this.setState({posts: p})
 			var revisedData = [];
 			if (val == 'All'){
-				//console.log(p)
 				this.setState({posts: p});
 			}
 			else if (val == 'Me'){
@@ -64,7 +62,6 @@ export default class HomeScreen extends Component {
 				this.setState({posts: revisedData});
 			}
 		})	
-
 	}
 
 	// Removes extra whitespace introducedß by navigation
@@ -76,7 +73,7 @@ export default class HomeScreen extends Component {
   //When showing a picture, set this.state.photoViewData to the ID of the post to show
   //then call this method
 
-  showPhoto = (photoID) => {
+  	showPhoto = (photoID) => {
 		this.setState(prevState => ({
   			photoView: true,
   			photoViewData: photoID
@@ -89,14 +86,12 @@ export default class HomeScreen extends Component {
 		})
 	};
 
-
-
 	// Removes extra whitespace introducedß by navigation
 	static navigationOptions = {
     	header: null,
-  };
+  	};
 
-  //Remove the picbutton, this is just used to show and hide the photo view right now
+  	//Remove the picbutton, this is just used to show and hide the photo view right now
 
 	render() {
 		const {navigate} = this.props.navigation;
@@ -108,21 +103,25 @@ export default class HomeScreen extends Component {
 			{ value: 'Me', }];
 		LayoutAnimation.easeInEaseOut();
 		return (
-			<View style={{flex: 1}}>
+			<View style={{ flex: 1 }}>
 				<Navbar navigation={this.props.navigation} />
-				<View style={{width: 200, alignSelf: 'center' }}>
-					<Dropdown label='View' 
+				<View style={{width: 160, height: 60, alignSelf: 'center', }} >
+					<Dropdown label='View:' 
 							  data={myData} 
 							  value="All" 
 							  onChangeText={value => this.getDropdownVal(value) } 
-							  fontSize={18}
-							  labelFontSize={15} 
+							  fontSize={13}
+							  labelFontSize={13} 
 							  selectedItemColor="#F35F64" 
 							  shadeOpacity={0.3}
-							  baseColor="#F35F64"
+							  baseColor="#888888"
+							  textColor="#F35F64"
 							  dropdownPosition={0}
 							  itemCount={5}
-							   />
+							  style={{textAlign: 'center'}}
+							  itemTextStyle={{textAlign: 'center'}}
+							  
+						/>
 				</View>
 				<PopupWindow status={this.state.popupWindow} />
 

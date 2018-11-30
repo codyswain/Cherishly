@@ -60,7 +60,6 @@ class FireBase {
    };
 
    downloadComments = async (postID) => {
-    console.log(postID)
     var ref = firebase.firestore().collection('posts').doc(postID).collection('comments').orderBy('msec')
 
     try {
