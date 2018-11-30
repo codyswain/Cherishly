@@ -43,7 +43,7 @@ class FireBase {
    };
 
    downloadPosts = async () => {
-     var ref = firebase.firestore().collection('posts');
+     var ref = firebase.firestore().collection('posts').orderBy('date', 'desc');
 
      try {
        posts = await ref.get()

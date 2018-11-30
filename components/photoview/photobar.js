@@ -50,11 +50,10 @@ const styles = StyleSheet.create({
     bottom: 0,
     borderBottomLeftRadius: 20,
     borderBottomRightRadius: 20,
-    borderTopColor: 'black',
+    borderTopColor: '#eeeeee',
     borderTopWidth: 1,
     textAlign: 'center',
     fontSize: 32,
-      //fontFamily: "Oxygen", "Karla", "Lato", "Raleway"
   },
 
   picViewName : {
@@ -63,7 +62,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     left: 0,
     //bottom: '50%',
-    borderRightColor: 'black',
+    borderRightColor: '#eeeeee',
     borderRightWidth: 1,
     borderBottomLeftRadius: 20,
     justifyContent: 'center',
@@ -103,7 +102,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     left: '40%',
     bottom: 0,
-    borderRightColor: 'black',
+    borderRightColor: '#eeeeee',
     borderRightWidth: 1,
     flex: 1,
     justifyContent: 'center',

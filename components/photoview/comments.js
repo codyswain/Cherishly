@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
     	top: 60,
     	width: '100%',
     	height: '60%',
-    	borderBottomColor: 'black',
+    	borderBottomColor: '#eeeeee',
     	borderBottomWidth: 1
   	},
 

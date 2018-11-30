@@ -121,6 +121,7 @@ export default class HomeScreen extends Component {
 							  shadeOpacity={0.3}
 							  baseColor="#F35F64"
 							  dropdownPosition={0}
+							  itemCount={5}
 							   />
 				</View>
 				<PopupWindow status={this.state.popupWindow} />
