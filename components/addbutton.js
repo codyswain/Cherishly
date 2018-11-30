@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, Text, TouchableHighlight} from 'react-native';
+import { View, StyleSheet, Text, TouchableHighlight, LayoutAnimation } from 'react-native';
 import { Icon } from 'react-native-elements';
 
 export default class AddButton extends React.Component {
@@ -7,8 +7,8 @@ export default class AddButton extends React.Component {
 		return (
 			<TouchableHighlight onPress={this.props.handler}>
 				<View style={styles.addButton}>
-					<Text>
-						Add Photo
+					<Text style={styles.addButtonText}>
+						+ New
 					</Text>
 				</View>
 			</TouchableHighlight>
@@ -17,17 +17,23 @@ export default class AddButton extends React.Component {
 }
 
 const styles = StyleSheet.create({
-	addButton: {
+
+addButton: {
   	position: 'absolute',
   	bottom: 30,
   	right: 30,
   	width: 80,
   	height: 80,
   	zIndex: 1,
-
   	justifyContent: 'center',
   	alignItems: 'center',
   	borderRadius: 50, 
-  	backgroundColor: '#F35F64',
-  }
+	backgroundColor: '#F35F64',
+  },
+
+addButtonText: {
+	color: '#ffffff',
+	fontSize: 20,
+	fontFamily: 'Gill Sans',
+}
 })

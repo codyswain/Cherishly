@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Alert, ScrollView, StyleSheet, View, Button, Text, TouchableHighlight, FlatList, Image } from 'react-native';
+import { Alert, ScrollView, StyleSheet, View, Button, Text, TouchableHighlight, FlatList, Image, LayoutAnimation } from 'react-native';
 import Fire from '../components/firebase/Firebase';
 import Navbar from '../components/navbar';
 import AddButton from '../components/addbutton';
@@ -48,8 +48,6 @@ export default class HomeScreen extends Component {
 
 	doStuff = async (val) => {
 		// make call to firebase
-		//let tempData = [{key: 'a', group: 'Roommates'}, {key: 'b', group: 'Roommates'}, {key: 'c', group: 'Family'}, {key: 'd', group: 'soccer team 2018'}];
-		//let tempData = Fire.downloadPosts();
 		await Fire.downloadPosts().then(p => {
 			//this.setState({posts: p})
 			var revisedData = [];
@@ -103,15 +101,16 @@ export default class HomeScreen extends Component {
 			{value: 'Roommates',}, 
 			{ value: 'Family', }, 
 			{ value: 'soccer team 2018', }];
+		LayoutAnimation.easeInEaseOut();
 		return (
 			<View style={{flex: 1}}>
 				<Navbar navigation={this.props.navigation} />
-				<Dropdown label='Filter' data={myData} value="All" onChangeText={value => this.getDropdownVal(value) }/>				
+				<View style={{width: 200, alignSelf: 'center' }}><Dropdown label='View' data={myData} value="All" onChangeText={value => this.getDropdownVal(value) } labelFontSize={15} selectedItemColor="#F35F64" containerStyle={styles.dropdownContainer} dropdownMargins={{min: 8, max: 16}} /></View>
 				<PopupWindow status={this.state.popupWindow} />
 
 				{this.state.photoView ? 
 
-				<PhotoView status={this.state.photoView} handler={this.hidePhotoView} postID={this.state.photoViewData}/>
+				<PhotoView status={this.state.photoView} handler={this.hidePhotoView} postID={this.state.photoViewData} />
 				:
 				<View></View>
 				}
@@ -120,8 +119,7 @@ export default class HomeScreen extends Component {
 					<ScrollView>
 					<FlatList
   						data={this.state.posts}
-  						renderItem={ ({item}) => <Post link={item.src} group={item.group} handleClick={() => this.showPhoto(item.id)} /> }
-						
+  						renderItem={ ({item}) => <Post link={item.src} group={item.group} handleClick={() => this.showPhoto(item.id)} /> }			
 					/>
 					</ScrollView>
 				</View>
@@ -152,17 +150,8 @@ const styles = StyleSheet.create({
 		backgroundColor: '#F35F64',
 	},
 
-	picButton: {
-		position: 'absolute',
-		bottom: 30,
-		left: 30,
-		width: 80,
-		height: 80,
-		zIndex: 1,
-
-		justifyContent: 'center',
-		alignItems: 'center',
-		borderRadius: 50, 
-		backgroundColor: '#F35F64',
-	},
+	containerStyle: {
+		flex: 1,
+		width: 10,
+	}
 })

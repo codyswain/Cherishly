@@ -67,8 +67,7 @@ const styles = StyleSheet.create({
     borderRightWidth: 1,
     borderBottomLeftRadius: 20,
     justifyContent: 'center',
-    alignItems: 'center'
-    
+    alignItems: 'center',
   },
 
   userName: {
@@ -77,7 +76,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     right: 5,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
 
   profPicContainer : {
@@ -120,6 +119,6 @@ const styles = StyleSheet.create({
     bottom: 0,
     borderBottomRightRadius: 20,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   }
 })
