@@ -62,8 +62,8 @@ export default class PhotoView extends React.Component {
 		return (
 				<View style={styles.photoView}>
 					<Image source={{uri:this.state.post.src}} style={styles.picture}/>
-					<TouchableHighlight style={{position:'absolute', right: 5, top: 5}} onPress={this.props.handler}>
-						<Icon name='close' size={40} color='white'/>
+					<TouchableHighlight underlayColor="transparent" style={{position:'absolute', right: 5, top: 5}} onPress={this.props.handler}>
+						<Icon name='close' size={25} color='white'/>
 					</TouchableHighlight>
 					{this.state.comments ? 
 					<CommentView handler={this.handleHideCommentsButton} post={this.state.post} user={this.state.user} postID={this.props.postID}/>
@@ -90,10 +90,10 @@ const styles = StyleSheet.create({
 		top: 100,
 		bottom: 40,
 		position: 'absolute',
-		borderRadius: 20,
+		borderRadius: 10,
 		zIndex: 1,
-		backgroundColor: 'black',
-		borderColor: 'black',
+		backgroundColor: 'white',
+		borderColor: '#eeeeee',
 		borderWidth: 1,
 		justifyContent: 'center',
 		alignItems: 'center'
@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
     	left: 0,
 		right: 0,
 		top: 0,
-		borderRadius: 20,
+		borderRadius: 10,
 	},
 
 	photoInfoBar : {
@@ -116,13 +116,12 @@ const styles = StyleSheet.create({
 		height: '15%',
 		position: 'absolute',
 		bottom: 0,
-		borderBottomLeftRadius: 20,
-		borderBottomRightRadius: 20,
-		borderTopColor: 'black',
+		borderBottomLeftRadius: 10,
+		borderBottomRightRadius: 10,
+		borderTopColor: '#eeeeee',
 		borderTopWidth: 1,
 		textAlign: 'center',
 		fontSize: 32,
-    	//fontFamily: "Oxygen", "Karla", "Lato", "Raleway"
 	},
 
 })

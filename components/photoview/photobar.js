@@ -10,7 +10,8 @@ export default class PhotoBar extends React.Component {
     const date = new Date(postInfo.date)
     var month = date.getMonth() + 1
     var day = date.getDate()
-    var dateString = '' + month.toString() + '/' + day.toString()
+    var year = date.getFullYear()
+    var dateString = '' + month.toString() + '/' + day.toString() + '/' + year.toString()
       return (
       <View style={styles.photoInfoBar}>
         <View style={styles.picViewName}>
@@ -23,7 +24,7 @@ export default class PhotoBar extends React.Component {
           </View>
         </View>
         <View style={styles.picViewComments}>
-          <TouchableHighlight onPress={this.props.handler}>
+          <TouchableHighlight underlayColor="rgba(255, 255, 255, 0.7)" onPress={this.props.handler}>
             <Text style={{fontFamily: 'Gill Sans'}}>View Comments</Text>
           </TouchableHighlight>
           
@@ -43,18 +44,17 @@ export default class PhotoBar extends React.Component {
 const styles = StyleSheet.create({
 
   photoInfoBar : {
-    backgroundColor: '#96beff',
+    backgroundColor: 'rgba(240, 240, 240, 0.9)',
     width: '100%',
     height: '15%',
     position: 'absolute',
     bottom: 0,
-    borderBottomLeftRadius: 20,
-    borderBottomRightRadius: 20,
-    borderTopColor: 'black',
+    borderBottomLeftRadius: 10,
+    borderBottomRightRadius: 10,
+    borderTopColor: '#eeeeee',
     borderTopWidth: 1,
     textAlign: 'center',
     fontSize: 32,
-      //fontFamily: "Oxygen", "Karla", "Lato", "Raleway"
   },
 
   picViewName : {
@@ -63,12 +63,11 @@ const styles = StyleSheet.create({
     position: 'absolute',
     left: 0,
     //bottom: '50%',
-    borderRightColor: 'black',
-    borderRightWidth: 1,
-    borderBottomLeftRadius: 20,
+    //borderRightColor: '#eeeeee',
+    //borderRightWidth: 1,
+    borderBottomLeftRadius: 10,
     justifyContent: 'center',
-    alignItems: 'center'
-    
+    alignItems: 'center',
   },
 
   userName: {
@@ -77,7 +76,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     right: 5,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
 
   profPicContainer : {
@@ -95,7 +94,7 @@ const styles = StyleSheet.create({
       //objectFit: 'cover',
       overflow: 'hidden',
       resizeMode: 'cover',
-    borderRadius:20
+    borderRadius: 20
   },
 
   picViewComments : {
@@ -104,8 +103,8 @@ const styles = StyleSheet.create({
     position: 'absolute',
     left: '40%',
     bottom: 0,
-    borderRightColor: 'black',
-    borderRightWidth: 1,
+    //borderRightColor: '#eeeeee',
+    //borderRightWidth: 1,
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
@@ -118,8 +117,8 @@ const styles = StyleSheet.create({
     position: 'absolute',
     right:0,
     bottom: 0,
-    borderBottomRightRadius: 20,
+    borderBottomRightRadius: 10,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   }
 })

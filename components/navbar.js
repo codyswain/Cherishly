@@ -9,7 +9,7 @@ export default class Navbar extends React.Component {
 		return (
 				<View style={styles.navbar}>
 					<View style={styles.navbarButton}>
-						<TouchableHighlight onPress={() => this.props.navigation.push('Profile')}>
+						<TouchableHighlight underlayColor="transparent" onPress={() => this.props.navigation.push('Profile')}>
 							<Icon name='person' size={40} color='white'/>
 						</TouchableHighlight>
 					</View>
@@ -19,7 +19,7 @@ export default class Navbar extends React.Component {
 					</View>
 
 					<View style={styles.navbarButton}>
-						<TouchableHighlight onPress={() => this.props.navigation.push('Settings')}>
+						<TouchableHighlight underlayColor="transparent" onPress={() => this.props.navigation.push('Settings')}>
 							<Icon name='settings' size={40} color='white'/>
 						</TouchableHighlight>
 					</View>
@@ -38,9 +38,9 @@ const styles = StyleSheet.create({
   },
 
   navbarButton: {
-		flex: 1, 
-		justifyContent: 'center',
-		alignItems: 'center'
+	flex: 1, 
+	justifyContent: 'center',
+	alignItems: 'center'
   },
 
   navbarButtonText: {
