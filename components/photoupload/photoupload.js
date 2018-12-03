@@ -69,7 +69,7 @@ export default class PhotoUpload extends React.Component {
 
 			console.log(this.state.imageURI)
 
-			uploadResponse = await Fire.uploadImage(this.state.imageURI, "test.jpg");
+			uploadResponse = await Fire.uploadPhoto(this.state.imageURI);
 			console.log("This")
 			console.log(uploadResponse);
 			// uploadResponse = await Fire.uploadImage(this.state.imageURI);
