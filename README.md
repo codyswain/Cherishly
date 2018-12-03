@@ -1,5 +1,5 @@
-# cherishly_react
-Cherishly application in react native
+# Cherishly
+A group photo sharing application written in react native
 
 ### Main Screens
 
