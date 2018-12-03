@@ -101,6 +101,49 @@ class FireBase {
       data,
     })
   };
+
+  uploadPhoto = async (uri) => {
+    console.log("uri: ", uri);
+    var storageRef = firebase.storage().ref();
+    var uuid = this.uuid(); // Generate uuid for image
+    var imageRef = storageRef.child(uuid);
+    var imageURI = uri.replace('file://', '');
+    console.log("imageURI: ", imageURI);
+
+    // Need to use XMLHttpRequest for Expo
+    // https://github.com/expo/expo/issues/2402#issuecomment-443726662
+    const blob = await new Promise((resolve, reject) => {
+      const xhr = new XMLHttpRequest();
+      xhr.onload = function() {
+        resolve(xhr.response);
+      };
+      xhr.onerror = function() {
+        reject(new TypeError('Network request failed'));
+      };
+      xhr.responseType = 'blob';
+      xhr.open('GET', imageURI, true);
+      xhr.send(null);
+    });
+    imageRef.put(blob, {contentType: 'image/jpeg'});
+
+    // The normal js blob() method doesn't work with Expo 
+    /*
+    let blob = await fetch(imageURI)
+    .then(r => r.blob())
+    .then(blob => imageRef.put("data:image/png;base64," + blob, {contentType: 'image/jpeg'}));
+    */
+  };
+
+  // Generate a uuid for firebase image upload
+  // NOTE: not genuince uuid
+  uuid = () => {
+    s4 = () => {
+      return Math.floor((1 + Math.random()) * 0x10000)
+        .toString(16)
+        .substring(1);
+    }
+    return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
+  }
 }
 
 Fire = new FireBase();
