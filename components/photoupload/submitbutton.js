@@ -8,7 +8,7 @@ export default class SubmitButton extends React.Component {
 			<View style={{flex:1}}>
 				<TouchableHighlight onPress={this.props.handler}>
 					<View style={styles.submitButton}>
-							<Text style={{fontFamily: 'Gill Sans'}}>Submit</Text>
+							<Text style={{fontFamily: 'Gill Sans', color: 'white'}}>Submit</Text>
 					</View>
 				</TouchableHighlight>
 			</View>
@@ -20,9 +20,8 @@ const styles = StyleSheet.create({
 	submitButton: {
 		height: 50,
 		width: 200,
-		borderColor: 'black',
-		borderWidth: 2,
-		borderRadius: 10,
+		backgroundColor: '#F35F64',
+		borderRadius: 20,
 		justifyContent: 'center',
 		alignItems: 'center'
 	}

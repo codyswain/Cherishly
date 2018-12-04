@@ -96,15 +96,21 @@ export default class PhotoUpload extends React.Component {
 						</Text>
 					</View> 
 
-					<PhotoGroup handler={this.handlePhotoGroup} />
+					<View style={styles.groupContainer}> 
+						<PhotoGroup handler={this.handlePhotoGroup} />
+					</View>
 
 					<View style={styles.imageBox}>
 						<UploadImage handler={this.handlePhotoURI} />
 					</View> 
 
-					<PhotoCaption handler={this.handlePhotoCaption} />
+					<View style={styles.captionContainer}>
+						<PhotoCaption handler={this.handlePhotoCaption} />
+					</View>
 
-					<SubmitButton handler={this.handleSubmitButton} />
+					<View style={styles.submitButtonContainer}>
+						<SubmitButton handler={this.handleSubmitButton}/>
+					</View>
 
 				</View>
 			);
@@ -120,41 +126,41 @@ const styles = StyleSheet.create({
 		top: 100,
 		bottom: 30,
 		position: 'absolute',
-		borderRadius: 20,
+		borderRadius: 10,
 		zIndex: 1,
 		backgroundColor: 'white',
-		borderColor: 'black',
-		borderWidth: 1,
-		justifyContent: 'center',
+		borderColor: 'lightgrey',
+		borderWidth: 2,
 		alignItems: 'center'
 	},
 	titleView: {
-		flex: 1,
+		flex: .9,
 	},
 	title: {
 		fontSize: 40,
 		fontFamily: 'Gill Sans'
 	},
+	groupContainer: {
+		flex: .6,
+		width: '94%',
+		marginTop: '1%',
+		marginBottom: '2%',
+	},
 	imageBox: {
-		width: 350, 
-		height: 350,
-		borderColor: 'black',
+		flex: 5,
+		width: '94%',
+		borderColor: 'lightgrey',
 		borderWidth: 2,
-		borderRadius: 10,
+		borderRadius: 4,
 	},
-	submit: {
+	captionContainer: {
 		flex: 2,
-		alignSelf: 'stretch',
-		justifyContent: 'center',
-		alignItems: 'center'
+		width: '94%',
+		marginTop: '1%',
+		marginBottom: '1%',
 	},
-	submitButton: {
-		height: 50,
-		width: 200,
-		borderColor: 'black',
-		borderWidth: 2,
-		borderRadius: 10,
-		justifyContent: 'center',
-		alignItems: 'center'
+	submitButtonContainer: {
+		flex: 1,
+		marginBottom: '2%',
 	}
 })

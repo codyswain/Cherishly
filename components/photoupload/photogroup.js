@@ -5,7 +5,7 @@ import { Icon } from 'react-native-elements';
 export default class PhotoGroup extends React.Component {
 	render(){
 		return (
-			<View style={{flex:.5}}> 
+			<View style={styles.container}> 
 				<TouchableHighlight onPress={this.props.handler}>
 					<View style={styles.groupSelection}>
 							<Text style={{fontFamily: 'Gill Sans'}}>Enter groups here</Text>
@@ -17,6 +17,9 @@ export default class PhotoGroup extends React.Component {
 }
 
 const styles = StyleSheet.create({
+	container: {
+		flex: 1,
+	},
 	groupSelection: {
 		flex: 1,
 	},
