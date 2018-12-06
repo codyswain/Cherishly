@@ -8,7 +8,6 @@ import SubmitButton from './submitbutton';
 import PhotoCaption from './photocaption';
 import UploadImage from './imagepicker';
 
-
 export default class PhotoUpload extends React.Component {
 	constructor(props) {
 		super(props);
@@ -19,13 +18,11 @@ export default class PhotoUpload extends React.Component {
 	};
 
 	state = {
-		imageURI: null, 
-		data: {
-			userID: null, //hard code this
-			photoGroup: null,
-			photoCaption: null,
-			photoURL: null,
-		}
+		imageURI: '', 
+		userID: '',
+		photoGroup: '',
+		photoCaption: '',
+		photoURL: '',
 	};
 
 	/* --- Flow ------------
@@ -45,40 +42,48 @@ export default class PhotoUpload extends React.Component {
 
 	handlePhotoURI = (photoURI) => {
 		this.setState({ imageURI: photoURI });
-		console.log(this.state.imageURI)
 	};
 
-	handlePhotoGroup = (photoGroup) => {
-		this.setState({ data : { photoGroup : photoGroup}});
-		console.log("Group button pressed")
+	handlePhotoGroup = (group) => {
+		this.setState({ photoGroup : group});
 	};
 
-	handlePhotoCaption = (photoCaption) => {
-		this.setState({ data : { photoCaption: photoCaption }});
-		console.log(this.state.data.photoCaption);
+	handlePhotoCaption = (caption) => {
+		this.setState({ photoCaption: caption});
 	};
 
 	handlePhotoURL = (photoURL) => {
-		this.setState({ data : { photoURL: photoURL }});
+		this.setState({ photoURL: photoURL });
 	};
 
-	handleSubmitButton = async (e) => {
-		e.preventDefault();
-		console.log("Submit button pressed");
+	// Generate a uuid for firestore post id
+	// NOTE: not genuine uuid
+	uuid = () => {
+		s4 = () => {
+		  return Math.floor((1 + Math.random()) * 0x10000)
+		    .toString(16)
+		    .substring(1);
+		}
+		return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
+	}
+
+	handleSubmitButton = async () => {
 		if (this.state.imageURI){
+			url = await Fire.uploadPhoto(this.state.imageURI);
+			var uid = this.uuid();
+			var n = new Date();
+			var d = n.getTime();
+			await Fire.uploadData("posts", uid, {
+				date: d,
+				group: this.state.photoGroup,
+				id: uid,
+				src: url,
+				user: "trF57gKLevsY0v71d8Sy", //random
+			});
 
-			console.log(this.state.imageURI)
-
-			uploadResponse = await Fire.uploadPhoto(this.state.imageURI);
-			console.log("This")
-			console.log(uploadResponse);
-			// uploadResponse = await Fire.uploadImage(this.state.imageURI);
-			// uploadResult = await uploadResponse.json();
-
-			if (this.state.data.userID && this.state.data.photoURL){
-				// Upload this.state.data to firestore
-			};
+			console.log("Successful Upload");
 		};
+		this.props.handler(); //Close the window
 	};
 
 	render(){
@@ -96,15 +101,21 @@ export default class PhotoUpload extends React.Component {
 						</Text>
 					</View> 
 
-					<PhotoGroup handler={this.handlePhotoGroup} />
+					<View style={styles.groupContainer}> 
+						<PhotoGroup handler={this.handlePhotoGroup} />
+					</View>
 
 					<View style={styles.imageBox}>
 						<UploadImage handler={this.handlePhotoURI} />
 					</View> 
 
-					<PhotoCaption handler={this.handlePhotoCaption} />
+					<View style={styles.captionContainer}>
+						<PhotoCaption handler={this.handlePhotoCaption} />
+					</View>
 
-					<SubmitButton handler={this.handleSubmitButton} />
+					<View style={styles.submitButtonContainer}>
+						<SubmitButton handler={this.handleSubmitButton}/>
+					</View>
 
 				</View>
 			);
@@ -120,41 +131,41 @@ const styles = StyleSheet.create({
 		top: 100,
 		bottom: 30,
 		position: 'absolute',
-		borderRadius: 20,
+		borderRadius: 10,
 		zIndex: 1,
 		backgroundColor: 'white',
-		borderColor: 'black',
-		borderWidth: 1,
-		justifyContent: 'center',
+		borderColor: 'lightgrey',
+		borderWidth: 2,
 		alignItems: 'center'
 	},
 	titleView: {
-		flex: 1,
+		flex: .9,
 	},
 	title: {
 		fontSize: 40,
 		fontFamily: 'Gill Sans'
 	},
+	groupContainer: {
+		flex: .6,
+		width: '94%',
+		marginTop: '1%',
+		marginBottom: '2%',
+	},
 	imageBox: {
-		width: 350, 
-		height: 350,
-		borderColor: 'black',
+		flex: 5,
+		width: '94%',
+		borderColor: 'lightgrey',
 		borderWidth: 2,
-		borderRadius: 10,
+		borderRadius: 4,
 	},
-	submit: {
+	captionContainer: {
 		flex: 2,
-		alignSelf: 'stretch',
-		justifyContent: 'center',
-		alignItems: 'center'
+		width: '94%',
+		marginTop: '1%',
+		marginBottom: '1%',
 	},
-	submitButton: {
-		height: 50,
-		width: 200,
-		borderColor: 'black',
-		borderWidth: 2,
-		borderRadius: 10,
-		justifyContent: 'center',
-		alignItems: 'center'
+	submitButtonContainer: {
+		flex: 1,
+		marginBottom: '2%',
 	}
 })

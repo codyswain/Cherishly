@@ -201,7 +201,6 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   maybeRenderImageContainer: {
-    borderRadius: 8,
     overflow: 'hidden',
   },
   maybeRenderImage: {
