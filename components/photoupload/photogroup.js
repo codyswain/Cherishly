@@ -48,6 +48,7 @@ export default class PhotoGroup extends React.Component {
 						  shadeOpacity={0.3}
 						  baseColor="#888888"
 						  textColor="#F35F64"
+						  backgroundColor="white"
 						  dropdownPosition={0}
 						  itemCount={5}
 						  style={{textAlign: 'center'}}

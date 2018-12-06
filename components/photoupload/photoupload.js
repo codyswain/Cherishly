@@ -132,7 +132,7 @@ const styles = StyleSheet.create({
 		position: 'absolute',
 		borderRadius: 10,
 		zIndex: 1,
-		backgroundColor: 'white',
+		backgroundColor: 'rgba(200, 200,200, .9)',
 		borderColor: 'lightgrey',
 		borderWidth: 2,
 		alignItems: 'center'
@@ -141,6 +141,7 @@ const styles = StyleSheet.create({
 		flex: .9,
 	},
 	title: {
+		color: 'white',
 		fontSize: 40,
 		fontFamily: 'Gill Sans'
 	},
@@ -153,7 +154,7 @@ const styles = StyleSheet.create({
 	imageBox: {
 		flex: 5,
 		width: '94%',
-		borderColor: 'lightgrey',
+		borderColor: 'white',
 		borderWidth: 2,
 		borderRadius: 4,
 	},
