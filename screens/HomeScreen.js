@@ -3,7 +3,6 @@ import { Alert, ScrollView, StyleSheet, View, Button, Text, TouchableHighlight, 
 import Fire from '../components/firebase/Firebase';
 import Navbar from '../components/navbar';
 import AddButton from '../components/addbutton';
-import PopupWindow from '../components/popupwindow';
 import Post from '../components/post';
 import {Dropdown} from 'react-native-material-dropdown';
 import PhotoView from '../components/photoview/photoview';
@@ -33,11 +32,11 @@ export default class HomeScreen extends Component {
 
 	// Event handler for add photo button
 	// Pass this handler to child component
-	handleAddPhotoButton = (e) => {
-		e.preventDefault();
+	handleAddPhotoButton = () => {
 		this.setState(prevState => ({
   			photoUpload: !prevState.photoUpload
 		}));
+		this.doStuff('All');
 	}
 
 	getDropdownVal(selectedVal){	
@@ -121,7 +120,6 @@ export default class HomeScreen extends Component {
 							  
 						/>
 				</View>
-				<PopupWindow status={this.state.popupWindow} />
 				<PhotoUpload status={this.state.photoUpload} handler={this.handleAddPhotoButton}/>
 
 				{this.state.photoView ? 

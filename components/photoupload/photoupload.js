@@ -8,7 +8,6 @@ import SubmitButton from './submitbutton';
 import PhotoCaption from './photocaption';
 import UploadImage from './imagepicker';
 
-
 export default class PhotoUpload extends React.Component {
 	constructor(props) {
 		super(props);
@@ -19,13 +18,11 @@ export default class PhotoUpload extends React.Component {
 	};
 
 	state = {
-		imageURI: null, 
-		data: {
-			userID: null, //hard code this
-			photoGroup: null,
-			photoCaption: null,
-			photoURL: null,
-		}
+		imageURI: '', 
+		userID: '',
+		photoGroup: '',
+		photoCaption: '',
+		photoURL: '',
 	};
 
 	/* --- Flow ------------
@@ -45,40 +42,48 @@ export default class PhotoUpload extends React.Component {
 
 	handlePhotoURI = (photoURI) => {
 		this.setState({ imageURI: photoURI });
-		console.log(this.state.imageURI)
 	};
 
-	handlePhotoGroup = (photoGroup) => {
-		this.setState({ data : { photoGroup : photoGroup}});
-		console.log("Group button pressed")
+	handlePhotoGroup = (group) => {
+		this.setState({ photoGroup : group});
 	};
 
-	handlePhotoCaption = (photoCaption) => {
-		this.setState({ data : { photoCaption: photoCaption }});
-		console.log(this.state.data.photoCaption);
+	handlePhotoCaption = (caption) => {
+		this.setState({ photoCaption: caption});
 	};
 
 	handlePhotoURL = (photoURL) => {
-		this.setState({ data : { photoURL: photoURL }});
+		this.setState({ photoURL: photoURL });
 	};
 
-	handleSubmitButton = async (e) => {
-		e.preventDefault();
-		console.log("Submit button pressed");
+	// Generate a uuid for firestore post id
+	// NOTE: not genuine uuid
+	uuid = () => {
+		s4 = () => {
+		  return Math.floor((1 + Math.random()) * 0x10000)
+		    .toString(16)
+		    .substring(1);
+		}
+		return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
+	}
+
+	handleSubmitButton = async () => {
 		if (this.state.imageURI){
+			url = await Fire.uploadPhoto(this.state.imageURI);
+			var uid = this.uuid();
+			var n = new Date();
+			var d = n.getTime();
+			await Fire.uploadData("posts", uid, {
+				date: d,
+				group: this.state.photoGroup,
+				id: uid,
+				src: url,
+				user: "trF57gKLevsY0v71d8Sy", //random
+			});
 
-			console.log(this.state.imageURI)
-
-			uploadResponse = await Fire.uploadPhoto(this.state.imageURI);
-			console.log("This")
-			console.log(uploadResponse);
-			// uploadResponse = await Fire.uploadImage(this.state.imageURI);
-			// uploadResult = await uploadResponse.json();
-
-			if (this.state.data.userID && this.state.data.photoURL){
-				// Upload this.state.data to firestore
-			};
+			console.log("Successful Upload");
 		};
+		this.props.handler(); //Close the window
 	};
 
 	render(){
