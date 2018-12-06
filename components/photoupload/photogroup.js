@@ -31,7 +31,6 @@ export default class PhotoGroup extends React.Component {
 
 	render(){
 		let myData = [
-			{ value: 'All',},
 			{ value: 'Roommates',}, 
 			{ value: 'Family', }, 
 			{ value: 'Soccer', },
