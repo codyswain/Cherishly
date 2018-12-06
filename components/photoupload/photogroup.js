@@ -40,7 +40,7 @@ export default class PhotoGroup extends React.Component {
 				<View style={styles.groupSelection}>
 					<Dropdown
 						  data={myData} 
-						  value="All" 
+						  value="Roommates" 
 						  onChangeText={value => this.getGroupSelection(value) } 
 						  fontSize={13}
 						  labelFontSize={13} 

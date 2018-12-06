@@ -97,18 +97,14 @@ class FireBase {
    };
 
   uploadData = (collectionId, documentId, data) => {
-    firebase.firestore().collection(collectionId).doc(documentId).set({
-      data,
-    })
+    firebase.firestore().collection(collectionId).doc(documentId).set(data)
   };
 
   uploadPhoto = async (uri) => {
-    console.log("uri: ", uri);
     var storageRef = firebase.storage().ref();
     var uuid = this.uuid(); // Generate uuid for image
     var imageRef = storageRef.child(uuid);
     var imageURI = uri.replace('file://', '');
-    console.log("imageURI: ", imageURI);
 
     // Need to use XMLHttpRequest for Expo
     // https://github.com/expo/expo/issues/2402#issuecomment-443726662
@@ -124,8 +120,9 @@ class FireBase {
       xhr.open('GET', imageURI, true);
       xhr.send(null);
     });
-    imageRef.put(blob, {contentType: 'image/jpeg'});
-
+    await imageRef.put(blob, {contentType: 'image/jpeg'});
+    var url = await imageRef.getDownloadURL();
+    return url;
     // The normal js blob() method doesn't work with Expo 
     /*
     let blob = await fetch(imageURI)
@@ -135,7 +132,7 @@ class FireBase {
   };
 
   // Generate a uuid for firebase image upload
-  // NOTE: not genuince uuid
+  // NOTE: not genuine uuid
   uuid = () => {
     s4 = () => {
       return Math.floor((1 + Math.random()) * 0x10000)
