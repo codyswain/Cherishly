@@ -132,16 +132,16 @@ const styles = StyleSheet.create({
 		position: 'absolute',
 		borderRadius: 10,
 		zIndex: 1,
-		backgroundColor: 'rgba(200, 200,200, .9)',
+		backgroundColor: 'rgba(200, 200,200, .95)',
 		borderColor: 'lightgrey',
 		borderWidth: 2,
 		alignItems: 'center'
 	},
 	titleView: {
-		flex: .9,
+		flex: 1,
 	},
 	title: {
-		color: 'white',
+		color: 'black',
 		fontSize: 40,
 		fontFamily: 'Gill Sans'
 	},
@@ -149,7 +149,7 @@ const styles = StyleSheet.create({
 		flex: .6,
 		width: '94%',
 		marginTop: '1%',
-		marginBottom: '2%',
+		marginBottom: '1%',
 	},
 	imageBox: {
 		flex: 5,

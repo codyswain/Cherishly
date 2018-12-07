@@ -43,6 +43,7 @@ const styles = StyleSheet.create({
 		flex: 1,
 	},
 	captionBoxDown: {
+		padding: 5,
 		backgroundColor: 'white',
 		flex: 1,
 		width: '100%',
@@ -51,13 +52,14 @@ const styles = StyleSheet.create({
 		borderRadius: 4,
 	},
 	captionBoxUp: {
+		padding: 5,
 		backgroundColor: 'white',
 		position: 'absolute',
 		bottom: 130,
 		height: '100%',
 		width: '100%',
-		borderColor: 'white',
-		borderWidth: 2,
+		borderColor: 'black',
+		borderWidth: 1,
 		borderRadius: 4,
 		zIndex: 1,
 		backgroundColor: 'white'

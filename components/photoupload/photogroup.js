@@ -49,6 +49,7 @@ export default class PhotoGroup extends React.Component {
 						  baseColor="#888888"
 						  textColor="#F35F64"
 						  backgroundColor="white"
+						  containerStyle="white"
 						  dropdownPosition={0}
 						  itemCount={5}
 						  style={{textAlign: 'center'}}
@@ -71,7 +72,6 @@ const styles = StyleSheet.create({
 		position: 'relative',
 		width: 160,
 		height: 60,
-		alignSelf: 'center',
 		flex: 1,
 		height: '100%',
 	},
