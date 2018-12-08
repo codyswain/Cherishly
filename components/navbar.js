@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
 	navbar: {
   	flex: 1, 
   	flexDirection: 'row', 
-  	backgroundColor: '#F35F64'
+  	backgroundColor: '#006699'
   },
 
   navbarButton: {

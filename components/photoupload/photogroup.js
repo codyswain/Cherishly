@@ -44,10 +44,10 @@ export default class PhotoGroup extends React.Component {
 						  onChangeText={value => this.getGroupSelection(value) } 
 						  fontSize={13}
 						  labelFontSize={13} 
-						  selectedItemColor="#F35F64" 
+						  selectedItemColor="#006699" 
 						  shadeOpacity={0.3}
 						  baseColor="#888888"
-						  textColor="#F35F64"
+						  textColor="#006699"
 						  backgroundColor="white"
 						  containerStyle="white"
 						  dropdownPosition={0}

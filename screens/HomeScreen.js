@@ -102,23 +102,26 @@ export default class HomeScreen extends Component {
 		return (
 			<View style={{ flex: 1 }}>
 				<Navbar navigation={this.props.navigation} />
-				<View style={{width: 160, height: 60, alignSelf: 'center', }} >
-					<Dropdown label='View:' 
-							  data={myData} 
-							  value="All" 
-							  onChangeText={value => this.getDropdownVal(value) } 
-							  fontSize={13}
-							  labelFontSize={13} 
-							  selectedItemColor="#F35F64" 
-							  shadeOpacity={0.3}
-							  baseColor="#888888"
-							  textColor="#F35F64"
-							  dropdownPosition={0}
-							  itemCount={5}
-							  style={{textAlign: 'center'}}
-							  itemTextStyle={{textAlign: 'center'}}
-							  
-						/>
+				<View style={{flex: 1, width: '100%', alignItems: 'center', backgroundColor: '#BBBBBB'}}>
+					<View style={{width: 160, height: 60, alignSelf: 'center', backgroundColor: '#BBBBBB'}} >
+						<Dropdown label='View' 
+								  data={myData} 
+								  value="All" 
+								  onChangeText={value => this.getDropdownVal(value) } 
+								  fontSize={13}
+								  labelFontSize={13} 
+								  selectedItemColor="#006699" 
+								  shadeOpacity={0.3}
+								  baseColor="black"
+								  textColor="#006699"
+								  dropdownPosition={0}
+								  itemCount={5}
+								  itemColor="#006699"
+								  style={{textAlign: 'center', backgroundColor: 'white'}}
+								  itemTextStyle={{textAlign: 'center'}}
+								  
+							/>
+					</View>
 				</View>
 				<PhotoUpload status={this.state.photoUpload} handler={this.handleAddPhotoButton}/>
 
@@ -146,7 +149,7 @@ export default class HomeScreen extends Component {
 const styles = StyleSheet.create({
 	main: {
 		flex: 9, 
-		backgroundColor: 'white',
+		backgroundColor: 'rgba(50, 50, 50, 1)',
 		justifyContent: 'center',
 		alignItems: 'center',
 	},

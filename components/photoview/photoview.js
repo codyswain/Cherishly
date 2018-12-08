@@ -63,7 +63,7 @@ export default class PhotoView extends React.Component {
 				<View style={styles.photoView}>
 					<Image source={{uri:this.state.post.src}} style={styles.picture}/>
 					<TouchableHighlight underlayColor="transparent" style={{position:'absolute', right: 5, top: 5}} onPress={this.props.handler}>
-						<Icon name='close' size={25} color='white'/>
+						<Icon name='close' size={30} color='white'/>
 					</TouchableHighlight>
 					{this.state.comments ? 
 					<CommentView handler={this.handleHideCommentsButton} post={this.state.post} user={this.state.user} postID={this.props.postID}/>
@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
 		borderRadius: 10,
 		zIndex: 1,
 		backgroundColor: 'white',
-		borderColor: '#eeeeee',
+		borderColor: '#006699',
 		borderWidth: 1,
 		justifyContent: 'center',
 		alignItems: 'center'
