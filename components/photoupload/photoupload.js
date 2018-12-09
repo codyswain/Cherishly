@@ -78,7 +78,7 @@ export default class PhotoUpload extends React.Component {
 				group: this.state.photoGroup,
 				id: uid,
 				src: url,
-				user: "sgHSmNf7g6okDGATasV0", //random
+				user: "4k4QHv4x7a7jFLhyn9GN", //random
 			});
 			await Fire.makeComment(uid, this.state.photoCaption);
 		};

@@ -34,6 +34,7 @@ export default class PhotoGroup extends React.Component {
 			{ value: 'Roommates',}, 
 			{ value: 'Family', }, 
 			{ value: 'Soccer', },
+			{ value: 'CS188', },
 			{ value: 'Me', }];
 		return (
 			<View style={styles.container}> 

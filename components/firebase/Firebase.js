@@ -84,7 +84,7 @@ class FireBase {
     var dateString = '' + month.toString() + '/' + day.toString()
 
     await ref.add({
-      name: "Jane Allen",
+      name: "Cody Swain",
       text: text,
       date: dateString,
       msec: now.getTime()

@@ -96,6 +96,7 @@ export default class HomeScreen extends Component {
 			{ value: 'All',},
 			{ value: 'Roommates',}, 
 			{ value: 'Family', }, 
+			{ value: 'CS188', },
 			{ value: 'Soccer', },
 			{ value: 'Me', }];
 		LayoutAnimation.easeInEaseOut();

@@ -16,7 +16,7 @@ export default class ProfileScreen extends Component {
 
 
 	getUser = async () => {
-  		await Fire.downloadData('users', 'sgHSmNf7g6okDGATasV0').then(u => {
+  		await Fire.downloadData('users', '4k4QHv4x7a7jFLhyn9GN').then(u => {
   			console.log("got user")
   			this.setState({user: u, doneLoading:true});
   		});
@@ -80,6 +80,13 @@ export default class ProfileScreen extends Component {
 							<View style={styles.addButton}>
 								<Text style={styles.groupText}>		
 									Family
+								</Text>
+							</View>
+						</TouchableHighlight>
+						<TouchableHighlight onPress={() => navigate('Home')}>
+							<View style={styles.addButton}>
+								<Text style={styles.groupText}>		
+									CS188
 								</Text>
 							</View>
 						</TouchableHighlight>
