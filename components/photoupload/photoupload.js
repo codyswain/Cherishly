@@ -91,7 +91,7 @@ export default class PhotoUpload extends React.Component {
 			return (
 				<View style={styles.popupWindow}>
 					<TouchableHighlight style={{position:'absolute', right: 5, top: 5, zIndex: 1}} onPress={this.props.handler}>
-						<Icon name='close' size={40} color='black'/>
+						<Icon name='close' size={30} color='white'/>
 					</TouchableHighlight>
 
 					<View style={styles.titleView}>
@@ -132,16 +132,21 @@ const styles = StyleSheet.create({
 		position: 'absolute',
 		borderRadius: 10,
 		zIndex: 1,
-		backgroundColor: 'rgba(200, 200,200, .95)',
-		borderColor: 'lightgrey',
-		borderWidth: 2,
+		backgroundColor: 'rgba(50, 50, 50, .95)',
+		borderColor: '#006699',
+		borderWidth: 1,
 		alignItems: 'center'
 	},
 	titleView: {
 		flex: 1,
+		backgroundColor: '#006699',
+		borderTopLeftRadius: 8,
+		borderTopRightRadius: 8,
+		width: '100%',
+		alignItems: 'center',
 	},
 	title: {
-		color: 'black',
+		color: 'white',
 		fontSize: 40,
 		fontFamily: 'Gill Sans'
 	},
@@ -154,8 +159,6 @@ const styles = StyleSheet.create({
 	imageBox: {
 		flex: 5,
 		width: '94%',
-		borderColor: 'white',
-		borderWidth: 2,
 		borderRadius: 4,
 	},
 	captionContainer: {

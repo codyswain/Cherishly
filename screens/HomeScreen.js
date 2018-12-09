@@ -105,20 +105,19 @@ export default class HomeScreen extends Component {
 				<View style={{flex: 1, width: '100%', alignItems: 'center', backgroundColor: '#BBBBBB'}}>
 					<View style={{width: 160, height: 60, alignSelf: 'center', backgroundColor: '#BBBBBB'}} >
 						<Dropdown label='View' 
-								  data={myData} 
-								  value="All" 
-								  onChangeText={value => this.getDropdownVal(value) } 
-								  fontSize={13}
-								  labelFontSize={13} 
-								  selectedItemColor="#006699" 
-								  shadeOpacity={0.3}
-								  baseColor="black"
-								  textColor="#006699"
-								  dropdownPosition={0}
-								  itemCount={5}
-								  itemColor="#006699"
-								  style={{textAlign: 'center', backgroundColor: 'white'}}
-								  itemTextStyle={{textAlign: 'center'}}
+							  data={myData} 
+							  value="All" 
+							  onChangeText={value => this.getDropdownVal(value) } 
+							  fontSize={13}
+							  selectedItemColor="#006699" 
+							  shadeOpacity={0.3}
+							  baseColor="black"
+							  textColor="#006699"
+							  dropdownPosition={0}
+							  itemCount={5}
+							  itemColor="#006699"
+							  style={{textAlign: 'center', backgroundColor: 'white'}}
+							  itemTextStyle={{textAlign: 'center'}}
 								  
 							/>
 					</View>
